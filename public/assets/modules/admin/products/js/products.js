@@ -1,14 +1,14 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     $("#tblProducts").DataTable({
         ajax: {
             url: '/product',
             type: "POST",
             dataType: "json",
-            beforeSend: function() {
+            beforeSend: function () {
                 $.blockUI('Processando...');
             },
-            dataSrc: function(data) {
+            dataSrc: function (data) {
                 console.log(data);
                 if (data) {
 
@@ -21,25 +21,36 @@ $(document).ready(function() {
 
                 return {};
             },
-            error: function(xhr, ajaxOptions, thrownError) {
+            error: function (xhr, ajaxOptions, thrownError) {
                 console.log(xhr);
                 Message.Toast({ 'message': thrownError, 'class': 'danger' });
             },
-            complete: function(xhr, status) {
+            complete: function (xhr, status) {
                 $.unblockUI();
             },
         },
 
-        columns: [{
-            title: "PRODUTO",
-            data: "product"
-        }, ],
+        columns: [
+            {
+                title: "PRODUTO",
+                data: "product"
+            },
+        ],
 
-        bFilter: false,
+        processing: false,
         bInfo: false,
-        bLengthChange: false,
         ordering: false,
-        language: Language.DataTable,
+        responsive: true,
+        dom: "Bfrtp",
+        buttons: [
+            {
+                text: "Adicionar",
+                className: "btn-success btn-sm",
+                action: function (e, dt, node, config) {
+                    $('#modalProduct').modal('show');
+                }
+            },
+        ],
 
     });
 
