@@ -21,6 +21,7 @@ class Product extends Controller
     public function all()
     {
         $this->response->setMessage('Testando');
+        $this->response->setClass('success');
         return $this->response->getResponse();
     }
 }
