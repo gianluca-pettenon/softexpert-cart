@@ -12,12 +12,8 @@
                     <a class="nav-link active" href="{{BASEURL}}">In&iacute;cio<span class="visually-hidden">(current)</span></a>
                 </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown" href="javascript:void(0)" role="button" aria-haspopup="true" aria-expanded="false">Administrador</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{BASEURL}}/admin/product">Produtos</a>
-                        <a class="dropdown-item" href="{{BASEURL}}/admin/type-product">Tipos de Produtos</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{BASEURL}}/admin">Administrador<span class="visually-hidden">(current)</span></a>
                 </li>
 
             </ul>

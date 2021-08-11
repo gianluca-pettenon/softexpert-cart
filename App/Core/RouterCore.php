@@ -35,7 +35,7 @@ class RouterCore
 
         $this->uri = implode('/', $this->normalizeURI($uri));
         if (DEBUG_URI)
-            dd($this->uri);
+            var_dump(($this->uri));
     }
 
     private function get($router, $call)
@@ -110,12 +110,14 @@ class RouterCore
     private function executeController($get)
     {
         $ex = explode('@', $get);
+
         if (!isset($ex[0]) || !isset($ex[1])) {
             (new \App\Controller\Message)->message('Dados inválidos', 'Controller ou método não encontrado: ' . $get, 404);
             return;
         }
 
         $cont = 'App\\Controller\\' . $ex[0];
+
         if (!class_exists($cont)) {
             (new \App\Controller\Message)->message('Dados inválidos', 'Controller não encontrada: ' . $get, 404);
             return;

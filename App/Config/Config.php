@@ -1,9 +1,9 @@
 <?php
 
 define('BASEURL', 'http://localhost:8080');
-
+define('BASE', '/softexpert/');
 define('UNSET_URI_COUNT', 1);
-define('DEBUG_URI', false);
+define('DEBUG_URI', true);
 
 define('DB_DEBUG', true);
 define('DB_HOST', 'localhost');
