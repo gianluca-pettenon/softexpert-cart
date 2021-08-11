@@ -16,9 +16,14 @@ class Product extends Controller
         $this->model = new ProductModel;
     }
 
-    public function getAll()
+    public function all()
     {
-        
+        $class = $this->model->test();
+
+        $this->load('admin/product', [
+            'class' => $class
+        ]);
     }
+
 
 }

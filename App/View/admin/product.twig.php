@@ -1,0 +1,1 @@
+<p>Exibindo resultado para: <span class="font-weight-bold"> {{class}}</span></p>
