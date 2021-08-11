@@ -7,9 +7,9 @@ class Response
 
     private static $response;
 
-    public static function set(array $value)
+    public static function set($response)
     {
-        self::$response = $value;
+        self::$response = $response;
     }
 
     public static function get()

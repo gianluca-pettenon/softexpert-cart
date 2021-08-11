@@ -1,6 +1,6 @@
 {% extends 'partials/body.twig.php'  %}
 
-{% block title %}Home - {% endblock %}
+{% block title %}In&iacute;cio {% endblock %}
 
 {% block body %}
 

@@ -32,4 +32,9 @@ class ProductModel
         $this->price = $price;
     }
 
+    public function getAll()
+    {
+        $query = "SELECT products.id, products.name, products.description, products.price FROM products ORDER BY products.name";
+    }
+
 }
