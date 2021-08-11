@@ -15,13 +15,11 @@ class Product extends Controller
     public function __construct()
     {
         $this->model = new ProductModel;
-        $this->response = new Response;
     }
 
     public function all()
     {
-        $this->response->setMessage('Testando');
-        $this->response->setClass('success');
-        return $this->response->getResponse();
+       Response::set(['message' => 'testing']);
+       return Response::get();
     }
 }

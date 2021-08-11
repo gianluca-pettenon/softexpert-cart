@@ -4,38 +4,21 @@ namespace App\Libraries;
 
 class Response
 {
-    public function __construct()
+
+    private static $response;
+
+    public static function set(array $value)
     {
-        $this->response = [];
+        self::$response = $value;
     }
 
-    public function setMessage($message)
-    {
-        $this->response['message'] = $message;
-    }
-
-    public function setUri($uri)
-    {
-        $this->response['uri'] = $uri;
-    }
-
-    public function setData($data)
-    {
-        $this->response['data'] = $data;
-    }
-
-    public function setClass($class)
-    {
-        $this->response['class'] = $class;
-    }
-
-    public function getResponse()
+    public static function get()
     {
         if (!headers_sent()) :
             header('Content-Type: application/json');
         endif;
 
-        exit(json_encode($this->response));
+        exit(json_encode(self::$response));
     }
     
 }
