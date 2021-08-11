@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     $("#tblProducts").DataTable({
         ajax: {
-            url: '/index/product',
+            url: '/product',
             dataType: "json",
             type: "POST",
             beforeSend: function() {

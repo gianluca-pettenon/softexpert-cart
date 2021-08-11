@@ -9,11 +9,11 @@
             <ul class="navbar-nav me-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{BASEURL}}/index">In&iacute;cio<span class="visually-hidden">(current)</span></a>
+                    <a class="nav-link active" href="{{BASEURL}}">In&iacute;cio<span class="visually-hidden">(current)</span></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{BASEURL}}/index/admin">Administrador<span class="visually-hidden">(current)</span></a>
+                    <a class="nav-link" href="{{BASEURL}}/admin">Administrador<span class="visually-hidden">(current)</span></a>
                 </li>
 
             </ul>

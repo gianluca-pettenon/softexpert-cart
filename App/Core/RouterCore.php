@@ -21,19 +21,21 @@ class RouterCore
         $this->method = $_SERVER['REQUEST_METHOD'];
 
         $uri = $_SERVER['REQUEST_URI'];
-
+     
         if (strpos($uri, '?'))
             $uri = mb_substr($uri, 0, strpos($uri, '?'));
 
+            
         $ex = explode('/', $uri);
-
+       
         $uri = $this->normalizeURI($ex);
-
-        for ($i = 0; $i < UNSET_URI_COUNT; $i++) {
+        
+       /* for ($i = 0; $i < UNSET_URI_COUNT; $i++) {
             unset($uri[$i]);
-        }
-
+        }*/
+        
         $this->uri = implode('/', $this->normalizeURI($uri));
+        
         if (DEBUG_URI)
             var_dump(($this->uri));
     }
