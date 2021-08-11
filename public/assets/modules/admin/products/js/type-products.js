@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    $("#txtTypeTax").mask('#.##0,00', {reverse: true});
+
     $("#tblTypeProducts").DataTable({
         ajax: {
             url: '/product/type',
@@ -52,6 +54,25 @@ $(document).ready(function () {
         ],
 
         language: Language.DataTable
+
+    });
+
+    $("#btnType").off("click").on("click", function () {
+
+        var params = {
+            'txtTypeName': $("#txtTypeName").val(),
+            'txtTypeTax': $("#txtTypeTax").val(),
+        };
+
+        if (params['txtTypeName'] == null || params['txtTypeName'] == "") {
+            Message.Toast({ 'message': 'Tipo de produto n&atilde;o informado.', 'class': 'warning' });
+            return false;
+        }
+
+        if (params['txtTypeTax'] == null || params['txtTypeTax'] == "") {
+            Message.Toast({ 'message': 'Valor do imposto n&atilde;o informado.', 'class': 'warning' });
+            return false;
+        }
 
     });
 

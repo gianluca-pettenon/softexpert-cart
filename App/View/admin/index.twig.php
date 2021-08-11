@@ -46,24 +46,26 @@
             </div>
             <div class="modal-body">
 
-                <div class="form-group">
-
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="txtProductName" name="txtProductName" placeholder="Nome do produto">
-                        <label for="txtProductName">Nome <span class="text-danger">*</span></label>
-                    </div>
+                <form method="POST" action="{{BASEURL}}/product/create" id="formProduct">
 
                     <div class="form-group">
-                        <label for="txtProductType" class="form-label mt-4">Tipo de Produto <span class="text-danger">*</span></label>
-                        <select class="form-select" id="txtProductType"></select>
-                    </div>
 
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="txtProductPrice" name="txtProductPrice" placeholder="Pre&ccedil;o">
-                        <label for="txtProductPrice">Pre&ccedil;o <span class="text-danger">*</span></label>
-                    </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="txtProductName" name="txtProductName" placeholder="Nome do produto">
+                            <label for="txtProductName">Nome <span class="text-danger">*</span></label>
+                        </div>
 
-                </div>
+                        <div class="form-group">
+                            <label for="txtProductType" class="form-label mt-4">Tipo de Produto <span class="text-danger">*</span></label>
+                            <select class="form-select" id="txtProductType"></select>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="txtProductPrice" name="txtProductPrice" placeholder="Pre&ccedil;o">
+                            <label for="txtProductPrice">Pre&ccedil;o <span class="text-danger">*</span></label>
+                        </div>
+
+                    </div>
 
             </div>
 
@@ -71,6 +73,8 @@
                 <button type="button" class="btn btn-dark btn-sm" data-bs-dismiss="modal">Fechar</button>
                 <button type="button" class="btn btn-primary btn-sm">Salvar</button>
             </div>
+
+            </form>
 
         </div>
     </div>
@@ -85,30 +89,34 @@
             </div>
             <div class="modal-body">
 
-                <div class="row">
+                <form method="POST" action="{{BASEURL}}/product/type/create" id="formType">
 
-                    <div class="col-lg-6">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="txtTypeName" name="txtTypeName" placeholder="Nome do produto">
-                            <label for="txtTypeName">Nome <span class="text-danger">*</span></label>
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="txtTypeName" name="txtTypeName" placeholder="Nome do produto">
+                                <label for="txtTypeName">Nome <span class="text-danger">*</span></label>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-lg-6">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="txtTypeTax" name="txtTypeTax" placeholder="Valor do Imposto">
-                            <label for="txtTypeTax">Valor do Imposto <span class="text-danger">*</span></label>
+                        <div class="col-lg-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="txtTypeTax" name="txtTypeTax" placeholder="Valor do Imposto (R$)">
+                                <label for="txtTypeTax">Valor do Imposto (R$) <span class="text-danger">*</span></label>
+                            </div>
                         </div>
-                    </div>
 
-                </div>
+                    </div>
 
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-dark btn-sm" data-bs-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary btn-sm">Salvar</button>
+                <button type="button" class="btn btn-primary btn-sm" id="btnType">Salvar</button>
             </div>
+
+            </form>
 
         </div>
     </div>
