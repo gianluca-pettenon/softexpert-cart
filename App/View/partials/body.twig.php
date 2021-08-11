@@ -26,6 +26,7 @@
     <script src="{{BASEURL}}/assets/libs/datatable/js/datatable.min.js"></script>
     <script src="{{BASEURL}}/assets/my/js/my.js"></script>
     <script src="{{BASEURL}}/assets/modules/admin/products/js/products.js"></script>
+    <script src="{{BASEURL}}/assets/modules/admin/products/js/type-products.js"></script>
 </body>
 
 </html>

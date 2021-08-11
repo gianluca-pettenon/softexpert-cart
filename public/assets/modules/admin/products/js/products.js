@@ -3,8 +3,8 @@ $(document).ready(function() {
     $("#tblProducts").DataTable({
         ajax: {
             url: '/product',
-            dataType: "json",
             type: "POST",
+            dataType: "json",
             beforeSend: function() {
                 $.blockUI('Processando...');
             },

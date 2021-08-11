@@ -30,10 +30,6 @@ class RouterCore
        
         $uri = $this->normalizeURI($ex);
         
-       /* for ($i = 0; $i < UNSET_URI_COUNT; $i++) {
-            unset($uri[$i]);
-        }*/
-        
         $this->uri = implode('/', $this->normalizeURI($uri));
         
         if (DEBUG_URI)
