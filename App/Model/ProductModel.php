@@ -6,35 +6,49 @@ use App\Core\Database;
 
 class ProductModel
 {
-
+    public $values = [];
+    private $table = 'products';
     private $db;
     private $name;
-    private $description;
+    private $type;
     private $price;
 
     public function __construct()
     {
-        $this->db = new Database;
+        $this->db = Database::getConnection();
+        $this->value = [];
     }
 
-    public function setName(string $name)
+    public function setName($name)
     {
-        $this->name = $name;
+        $this->value['name'] = $name;
     }
 
-    public function setDescription(string $description)
+    public function setType($type)
     {
-        $this->description = $description;
+        $this->value['type'] = $type;
     }
 
-    public function setPrice(float $price)
+    public function setPrice($price)
     {
-        $this->price = $price;
+        $this->value['price'] = $price;
     }
 
-    public function getAll()
+    public function create(array $values)
     {
-        $query = "SELECT products.id, products.name, products.description, products.price FROM products ORDER BY products.name";
-    }
+        try {
 
+            $data = $this->db->insertInto($this->table, $values)->execute(); 
+
+            return ['success' => true, 'last_id' => $data];
+
+        } catch (\Throwable $t) {
+            return $t->getMessage();
+            
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
+        return false;
+    }
 }

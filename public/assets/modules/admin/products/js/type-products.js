@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#txtTypeTax").mask('#.##0,00', {reverse: true});
+    $('#txtTypeTax').mask('##0,00', { reverse: true });
 
     $("#tblTypeProducts").DataTable({
         ajax: {
@@ -13,7 +13,7 @@ $(document).ready(function () {
             dataSrc: function (data) {
                 if (data) {
 
-                    Message.Toast(data);
+                    //Message.Toast(data);
 
                     if (data.data) {
                         return data.data;
@@ -70,9 +70,25 @@ $(document).ready(function () {
         }
 
         if (params['txtTypeTax'] == null || params['txtTypeTax'] == "") {
-            Message.Toast({ 'message': 'Valor do imposto n&atilde;o informado.', 'class': 'warning' });
+            Message.Toast({ 'message': 'Percentual do imposto n&atilde;o informado.', 'class': 'warning' });
             return false;
         }
+
+        $("#btnType").prop('disabled', true);
+
+        console.log(params);
+
+        $.ajax({
+            url: '/product/type/create',
+            type: 'POST',
+            data: params,
+            success: function (data) {
+                console.log(data);
+            },
+        });
+
+        $("#btnType").prop('disabled', false);
+
 
     });
 

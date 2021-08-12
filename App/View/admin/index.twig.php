@@ -89,7 +89,7 @@
             </div>
             <div class="modal-body">
 
-                <form method="POST" action="{{BASEURL}}/product/type/create" id="formType">
+                <form method="POST" id="formType">
 
                     <div class="row">
 
@@ -102,8 +102,8 @@
 
                         <div class="col-lg-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="txtTypeTax" name="txtTypeTax" placeholder="Valor do Imposto (R$)">
-                                <label for="txtTypeTax">Valor do Imposto (R$) <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="txtTypeTax" name="txtTypeTax" placeholder="Percentual do Imposto">
+                                <label for="txtTypeTax">Percentual do Imposto<span class="text-danger">*</span></label>
                             </div>
                         </div>
 

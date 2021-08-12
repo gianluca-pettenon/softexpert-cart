@@ -19,24 +19,20 @@ class Product extends Controller
 
     public function all()
     {
-       Response::set(['message' => 'testing']);
-       return Response::get();
+        Response::set(['message' => 'testing']);
+        return Response::get();
     }
 
     public function create()
     {
-        $this->model->setName(Input::post($_POST['productName']));
-        $this->model->setDescription(Input::post($_POST['productDescription']));
-        $this->model->setPrice((float)Input::post($_POST['productPrice']));
-        
-        $data = $this->model->create();
+        $data = $this->model->create([
+            'name'  => 'Testando',
+            'price' => '12.5'
+        ]);
 
-        Response::set($data);
-        return Response::get($data);
+        /*Response::set($data);
+        return Response::get();*/
+        return var_dump($data);
     }
 
-    public function type()
-    {
-        $this->model->load;
-    }
 }

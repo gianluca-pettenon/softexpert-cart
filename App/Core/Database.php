@@ -7,37 +7,25 @@ use PDO;
 class Database
 {
     private static $connection;
-    private $debug;
-    private $hostname;
-    private $username;
-    private $password;
-    private $database;
+    private static $debug = DB_DEBUG;
+    private static $hostname = DB_HOST;
+    private static $username = DB_USER;
+    private static $password = DB_PASS;
+    private static $database = DB_NAME;
 
-    public function __construct()
-    {
-        $this->debug    =  DB_DEBUG;
-        $this->hostname =  DB_HOST;
-        $this->port     =  DB_PORT;
-        $this->username =  DB_USER;
-        $this->password =  DB_PASS;
-        $this->database =  DB_NAME;
-    }
-
-    public function getConnection()
+    public static function getConnection()
     {
         try {
 
             if (self::$connection == null) :
-                self::$connection = new PDO("pgsql:host={$this->hostname};port={$this->port};dbname={$this->database};", $this->username, $this->password);
-                self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                self::$connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                self::$connection->setAttribute(PDO::ATTR_PERSISTENT, true);
+                $pdo = new PDO('pgsql:host=' . self::$hostname . ';dbname=' . self::$database, self::$username, self::$password);
+                self::$connection = new \Envms\FluentPDO\Query($pdo);
             endif;
 
             return self::$connection;
             
         } catch (\PDOException $e) {
-            if ($this->debug)
+            if (self::$debug)
                 echo $e->getMessage();
 
             return null;

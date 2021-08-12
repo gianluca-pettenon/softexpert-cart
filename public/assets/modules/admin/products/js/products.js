@@ -9,10 +9,10 @@ $(document).ready(function () {
                 $.blockUI('Processando...');
             },
             dataSrc: function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data) {
 
-                    Message.Toast(data);
+                    //Message.Toast(data);
 
                     if (data.data) {
                         return data.data;
@@ -30,12 +30,13 @@ $(document).ready(function () {
             },
         },
 
-        columns: [
-            {
-                title: "PRODUTO",
-                data: "product"
-            },
-        ],
+        columns:
+            [
+                {
+                    title: "PRODUTO",
+                    data: "product"
+                },
+            ],
 
         processing: false,
         bInfo: false,
@@ -51,6 +52,8 @@ $(document).ready(function () {
                 }
             },
         ],
+
+        language: Language.DataTable
 
     });
 
