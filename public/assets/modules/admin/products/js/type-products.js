@@ -1,20 +1,14 @@
 $(document).ready(function () {
 
-    $('#txtTypeTax').mask('##0,00', { reverse: true });
+    $('#txtTypeTax').mask('##0.00', { reverse: true });
 
-    $("#tblTypeProducts").DataTable({
+    var tblTypeProducts = $("#tblTypeProducts").DataTable({
         ajax: {
             url: '/product/type',
             type: "POST",
             dataType: "json",
-            beforeSend: function () {
-                $.blockUI('Processando...');
-            },
             dataSrc: function (data) {
                 if (data) {
-
-                    //Message.Toast(data);
-
                     if (data.data) {
                         return data.data;
                     }
@@ -26,15 +20,17 @@ $(document).ready(function () {
                 console.log(xhr);
                 Message.Toast({ 'message': thrownError, 'class': 'danger' });
             },
-            complete: function (xhr, status) {
-                $.unblockUI();
-            },
+            complete: function (xhr, status) { },
         },
 
         columns: [
             {
                 title: "PRODUTO",
-                data: "product"
+                data: "name"
+            },
+            {
+                title: "IMPOSTO",
+                data: "price"
             },
         ],
 
@@ -46,7 +42,7 @@ $(document).ready(function () {
         buttons: [
             {
                 text: "Adicionar",
-                className: "btn-success btn-sm",
+                className: "btn-info btn-sm",
                 action: function (e, dt, node, config) {
                     $('#modalType').modal('show');
                 }
@@ -60,16 +56,16 @@ $(document).ready(function () {
     $("#btnType").off("click").on("click", function () {
 
         var params = {
-            'txtTypeName': $("#txtTypeName").val(),
-            'txtTypeTax': $("#txtTypeTax").val(),
+            'name': $("#txtTypeName").val(),
+            'price': $("#txtTypeTax").val(),
         };
 
-        if (params['txtTypeName'] == null || params['txtTypeName'] == "") {
+        if (params['name'] == null || params['name'] == "") {
             Message.Toast({ 'message': 'Tipo de produto n&atilde;o informado.', 'class': 'warning' });
             return false;
         }
 
-        if (params['txtTypeTax'] == null || params['txtTypeTax'] == "") {
+        if (params['price'] == null || params['price'] == "") {
             Message.Toast({ 'message': 'Percentual do imposto n&atilde;o informado.', 'class': 'warning' });
             return false;
         }
@@ -83,12 +79,24 @@ $(document).ready(function () {
             type: 'POST',
             data: params,
             success: function (data) {
-                console.log(data);
+
+                if (data) {
+                    Message.Toast(data);
+                }
+
+                tblTypeProducts.ajax.reload();
+
             },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr);
+                Message.Toast({ 'message': thrownError, 'class': 'danger' });
+            },
+            complete: function (xhr, status) { },
         });
 
         $("#btnType").prop('disabled', false);
 
+        $('#modalType').modal('hide');
 
     });
 

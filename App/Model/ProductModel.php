@@ -6,8 +6,9 @@ use App\Core\Database;
 
 class ProductModel
 {
-    public $values = [];
-    private $table = 'products';
+    public $table = 'products';
+    public $colunms = ['id', 'name', 'type', 'price'];
+    private $values = [];
     private $db;
     private $name;
     private $type;
@@ -38,13 +39,33 @@ class ProductModel
     {
         try {
 
-            $data = $this->db->insertInto($this->table, $values)->execute(); 
+            $result = $this->db->insertInto($this->table, $values)->execute();
+            $this->db->close();
 
-            return ['success' => true, 'last_id' => $data];
+            return $result;
 
         } catch (\Throwable $t) {
             return $t->getMessage();
+
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
+        return false;
+    }
+
+    public function select()
+    {
+        try {
+
+            $result = $this->db->from($this->table)->select($this->colunms)->orderBy('name')->fetchAll();
+            $this->db->close();
+
+            return $result;
             
+        } catch (\Throwable $t) {
+            return $t->getMessage();
+
         } catch (\Exception $e) {
             return $e->getMessage();
         }
