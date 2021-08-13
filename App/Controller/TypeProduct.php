@@ -30,14 +30,13 @@ class TypeProduct extends Controller
                 $response = ['message' => 'Nenhum tipo de produto encontrado.', 'class' => 'info'];
             endif;
 
-            $response = ['message' => 'Produto carregado com sucesso.', 'class' => 'success', 'data' => $data];
+            $response = ['data' => $data];
             
         } catch (\Exception $e) {
             $response = ['message' => $e->getMessage()];
         }
 
-        Response::set($response);
-        return Response::get();
+        return Response::set($response);
     }
 
     public function create()
@@ -59,7 +58,6 @@ class TypeProduct extends Controller
             $response = ['message' => $e->getMessage()];
         }
 
-        Response::set($response);
-        return Response::get();
+        return Response::set($response);
     }
 }

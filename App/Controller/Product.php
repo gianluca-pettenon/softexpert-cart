@@ -17,22 +17,23 @@ class Product extends Controller
         $this->model = new ProductModel;
     }
 
-    public function get()
+    public function getAll()
     {
         try {
 
             $data = $this->model->select();
 
-            if ($data) :
-                $response = ['message' => 'Produto carregado com sucesso.', 'class' => 'success', 'data' => $data];
+            if (!$data) :
+                $response = ['message' => 'Nenhum produto encontrado.', 'class' => 'info'];
             endif;
+
+            $response = ['data' => $data];
             
         } catch (\Exception $e) {
             $response = ['message' => $e->getMessage()];
         }
 
-        Response::set($response);
-        return Response::get();
+        return Response::set($response);
     }
 
     public function create()
@@ -49,7 +50,6 @@ class Product extends Controller
             $response = ['message' => $e->getMessage()];
         }
 
-        Response::set($response);
-        return Response::get();
+        return Response::set($response);
     }
 }
