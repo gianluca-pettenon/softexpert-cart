@@ -31,6 +31,7 @@ class TypeProduct extends Controller
             endif;
 
             $response = ['message' => 'Produto carregado com sucesso.', 'class' => 'success', 'data' => $data];
+            
         } catch (\Exception $e) {
             $response = ['message' => $e->getMessage()];
         }

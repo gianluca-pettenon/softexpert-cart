@@ -5,15 +5,9 @@ $(document).ready(function () {
             url: '/product',
             type: "POST",
             dataType: "json",
-            beforeSend: function () {
-                $.blockUI('Processando...');
-            },
             dataSrc: function (data) {
-                //console.log(data);
+                console.log(data);
                 if (data) {
-
-                    //Message.Toast(data);
-
                     if (data.data) {
                         return data.data;
                     }
@@ -25,9 +19,7 @@ $(document).ready(function () {
                 console.log(xhr);
                 Message.Toast({ 'message': thrownError, 'class': 'danger' });
             },
-            complete: function (xhr, status) {
-                $.unblockUI();
-            },
+            complete: function (xhr, status) {},
         },
 
         columns:
@@ -46,7 +38,7 @@ $(document).ready(function () {
         buttons: [
             {
                 text: "Adicionar",
-                className: "btn-success btn-sm",
+                className: "btn-info btn-sm",
                 action: function (e, dt, node, config) {
                     $('#modalProduct').modal('show');
                 }
