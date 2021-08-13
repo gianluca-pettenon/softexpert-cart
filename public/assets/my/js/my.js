@@ -16,7 +16,7 @@ const Fill = {
         options.push($('<option/>').val(null).text('Selecione'));
 
         for (var i in data) {
-            options.push($('<option/>').val(data[i].ID).text(data[i].TEXT));
+            options.push($('<option/>').val(data[i].id).text(data[i].name));
         }
 
         seletor.html(options);

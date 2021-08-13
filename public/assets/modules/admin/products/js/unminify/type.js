@@ -72,8 +72,6 @@ $(document).ready(function () {
 
         $("#btnType").prop('disabled', true);
 
-        console.log(params);
-
         $.ajax({
             url: '/product/type/create',
             type: 'POST',
@@ -91,7 +89,9 @@ $(document).ready(function () {
                 console.log(xhr);
                 Message.Toast({ 'message': thrownError, 'class': 'danger' });
             },
-            complete: function (xhr, status) { },
+            complete: function (xhr, status) {
+                $("#formType").trigger('reset');
+            },
         });
 
         $("#btnType").prop('disabled', false);

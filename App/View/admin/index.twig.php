@@ -46,12 +46,12 @@
             </div>
             <div class="modal-body">
 
-                <form method="POST" action="{{BASEURL}}/product/create" id="formProduct">
+                <form method="POST" id="formProduct">
 
                     <div class="form-group">
 
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="txtProductName" name="txtProductName" placeholder="Nome do produto">
+                            <input type="text" class="form-control" id="txtProductName" name="txtProductName" placeholder="Nome do produto" maxlength="100">
                             <label for="txtProductName">Nome <span class="text-danger">*</span></label>
                         </div>
 
@@ -71,7 +71,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-dark btn-sm" data-bs-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary btn-sm">Salvar</button>
+                <button type="button" class="btn btn-primary btn-sm" id="btnProduct">Salvar</button>
             </div>
 
             </form>
@@ -95,7 +95,7 @@
 
                         <div class="col-lg-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="txtTypeName" name="txtTypeName" placeholder="Nome do produto">
+                                <input type="text" class="form-control" id="txtTypeName" name="txtTypeName" placeholder="Nome do produto" maxlength="100">
                                 <label for="txtTypeName">Nome <span class="text-danger">*</span></label>
                             </div>
                         </div>

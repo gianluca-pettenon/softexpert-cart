@@ -42,9 +42,11 @@ class Product extends Controller
 
             $data = $this->model->create(Input::post($_POST));
 
-            if ($data) :
-                $response = ['message' => 'Produto cadastrado com sucesso.', 'class' => 'success'];
+            if (!$data) :
+                $response = ['message' => 'Produto não foi cadastrado.', 'class' => 'info'];
             endif;
+
+            $response = ['message' => 'Produto cadastrado com sucesso.', 'class' => 'success'];
 
         } catch (\Exception $e) {
             $response = ['message' => $e->getMessage()];
