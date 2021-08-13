@@ -9,26 +9,14 @@
         <div class="card-header text-white bg-primary">Fa&ccedil;a suas Compras</div>
         <div class="card-body">
 
-            <ul id="tabCustomer" class="nav nav-tabs" role="tablist">
+            <div class="row">
 
-                <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#cartCustumer" role="tab">Meu Carrinho</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#cartProducts" role="tab">Produtos</a>
-                </li>
-
-            </ul>
-
-            <div class="tab-content">
-
-                <div class="tab-pane active" id="cartCustumer" role="tabpanel"><br>
-                    <p>Lorem Ipsum</p>
+                <div class="col-lg-7">
+                    <h1>Products</h1>
                 </div>
 
-                <div class="tab-pane" id="cartProducts" role="tabpanel"><br>
-                    <p>Ipsum Lorem</p>
+                <div class="col-lg-5">
+                    <h1>Total</h1>
                 </div>
 
             </div>
