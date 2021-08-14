@@ -6,5 +6,6 @@ This basic application consists of a purchasing system developed for SoftExpert 
 - Run `composer install` to install the dependencies ([get composer here](https://getcomposer.org/download)).
 
 ## Settings
-- Enable the `php_pdo_pgsql.dll` extension in your `php.ini`.
-- Upload file database located `/data/sql/database.sql`.
+- Enable the `pdo_pgsql.dll` extension in your `php.ini`.
+- Database located `/data/sql/database.sql`.
+- General Settings `App/Config/Config.php`.
