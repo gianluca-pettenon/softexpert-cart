@@ -4,7 +4,8 @@
 
 {% block body %}
 
-<div class="col-lg-10 offset-lg-1">
+<div class="col-lg-12 offset-lg-0">
+
     <div class="card">
         <div class="card-header text-white bg-primary">Fa&ccedil;a suas Compras</div>
         <div class="card-body">
@@ -15,14 +16,23 @@
                     <table id="tblCart" class="table table-hover" style="font-size: 10px; width: 100%"></table>
                 </div>
 
-                <div class="col-lg-4">
-                    <h1>Total</h1>
+                <div class="col-lg-6">
+                    <h3>Meu Carrinho</h3><hr>
+
+                    <div id="cartProducts"></div>
+
+                    <div class="col-lg-4 mt-5">
+                        <b>Imposto</b>: <span id="cartTaxTotal">0</span><br>
+                        <b>Total</b>: <span id="cartTotal">0</span>
+                    </div>
+
                 </div>
 
             </div>
 
         </div>
     </div>
+
 </div>
 
 {% endblock %}

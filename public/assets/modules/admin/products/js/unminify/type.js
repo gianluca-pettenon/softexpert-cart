@@ -30,7 +30,10 @@ $(document).ready(function () {
             },
             {
                 title: "IMPOSTO",
-                data: "price"
+                data: "price",
+                render: function (data, type, row) {
+                    return data + '%';
+                }
             },
         ],
 
@@ -67,6 +70,11 @@ $(document).ready(function () {
 
         if (params['price'] == null || params['price'] == "") {
             Message.Toast({ 'message': 'Percentual do imposto n&atilde;o informado.', 'class': 'warning' });
+            return false;
+        }
+
+        if (parseFloat(params['price']) > 100) {
+            Message.Toast({ 'message': 'Percentual n&atilde;o fecha em 100%', 'class': 'warning' });
             return false;
         }
 
