@@ -21,6 +21,9 @@ class Product extends Controller
     {
         try {
 
+            $this->model->leftTable = 'typeproducts ON typeproducts.id = products.type';
+            $this->model->colunms = 'products.id, products.name, products.price, typeproducts.price as tax';
+
             $data = $this->model->select();
 
             if (!$data) :

@@ -8,6 +8,7 @@ class ProductModel
 {
     public $table = 'products';
     public $colunms = ['id', 'name', 'type', 'price'];
+    public $leftTable;
     private $values = [];
     private $db;
     private $name;
@@ -58,7 +59,12 @@ class ProductModel
     {
         try {
 
-            $result = $this->db->from($this->table)->select($this->colunms)->orderBy('name')->fetchAll();
+            if($this->leftTable !== null) :
+                $result = $this->db->from($this->table)->leftJoin($this->leftTable)->select($this->colunms)->fetchAll();
+            else:
+                $result = $this->db->from($this->table)->select($this->colunms)->orderBy('name')->fetchAll();
+            endif;
+
             $this->db->close();
 
             return $result;

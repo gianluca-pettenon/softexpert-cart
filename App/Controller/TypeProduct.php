@@ -11,18 +11,19 @@ use App\Helper\Input;
 class TypeProduct extends Controller
 {
     private $model;
+    private $table = 'typeproducts';
 
     public function __construct()
     {
         $this->model = new ProductModel;
+        $this->model->table = $this->table;
     }
 
     public function getAll()
     {
         try {
 
-            $this->model->table = 'typeproducts';
-            $this->model->colunms = ['id', 'name', 'price'];
+            $this->model->colunms = ['typeproducts.id', 'typeproducts.name', 'typeproducts.price'];
 
             $data = $this->model->select();
 
@@ -42,9 +43,8 @@ class TypeProduct extends Controller
     public function create()
     {
         try {
-
-            $this->model->table = 'typeproducts'; 
-            $this->model->colunms = ['name', 'price'];
+            
+            $this->model->colunms = ['typeproducts.name', 'typeproducts.price'];
 
             $data = $this->model->create(Input::post($_POST));
 
