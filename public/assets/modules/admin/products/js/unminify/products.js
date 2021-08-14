@@ -31,7 +31,17 @@ $(document).ready(function () {
                 },
                 {
                     title: "PRE&Ccedil;O",
-                    data: "price"
+                    data: "price",
+                    render: function (data, type, row) {
+                        return 'R$' + data;
+                    }
+                },
+                {
+                    title: "IMPOSTO",
+                    data: "tax",
+                    render: function (data, type, row) {
+                        return data + '%';
+                    }
                 },
 
             ],

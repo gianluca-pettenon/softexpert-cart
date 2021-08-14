@@ -27,6 +27,7 @@
     <script src="{{BASEURL}}/assets/my/js/my.js"></script>
     <script src="{{BASEURL}}/assets/modules/admin/products/js/products.min.js"></script>
     <script src="{{BASEURL}}/assets/modules/admin/products/js/type.min.js"></script>
+    <script src="{{BASEURL}}/assets/modules/cart/js/cart.js"></script>
 </body>
 
 </html>

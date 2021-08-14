@@ -11,11 +11,11 @@
 
             <div class="row">
 
-                <div class="col-lg-7">
-                    <h1>Products</h1>
+                <div class="col-lg-6">
+                    <table id="tblCart" class="table table-hover" style="font-size: 10px; width: 100%"></table>
                 </div>
 
-                <div class="col-lg-5">
+                <div class="col-lg-4">
                     <h1>Total</h1>
                 </div>
 
