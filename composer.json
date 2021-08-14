@@ -9,7 +9,8 @@
     "require": {
         "php": "^7.3",
         "twig/twig": "^3.0",
-        "phpunit/phpunit": "9.5.8"
+        "phpunit/phpunit": "9.5.8",
+        "envms/fluentpdo": "^2.2.0"
     },
     "autoload": {
         "psr-4": {

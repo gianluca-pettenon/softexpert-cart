@@ -2,7 +2,11 @@
 
 $this->get('/', 'Home@index');
 
-$this->post('/product', 'Product@all');
+$this->get('/admin', 'Admin@index');
 
-//$this->get('/admin/type-product', 'Product@type);
+$this->post('/product', 'Product@getAll');
+$this->post('/product/create', 'Product@create');
+
+$this->post('/product/type', 'TypeProduct@getAll');
+$this->post('/product/type/create', 'TypeProduct@create');
 

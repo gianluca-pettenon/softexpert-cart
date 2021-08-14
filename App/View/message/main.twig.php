@@ -1,6 +1,6 @@
 {% extends 'partials/body.twig.php'  %}
 
-{% block title %}Página não encontrada - {% endblock %}
+{% block title %}Not found{% endblock %}
 
 {% block body %}
     <div class="card mb-3">

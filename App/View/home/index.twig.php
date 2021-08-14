@@ -1,40 +1,38 @@
 {% extends 'partials/body.twig.php'  %}
 
-{% block title %}Home - {% endblock %}
+{% block title %}In&iacute;cio {% endblock %}
 
 {% block body %}
 
-<div class="col-lg-10 offset-lg-1">
+<div class="col-lg-12 offset-lg-0">
+
     <div class="card">
         <div class="card-header text-white bg-primary">Fa&ccedil;a suas Compras</div>
         <div class="card-body">
 
-            <ul id="tabCustomer" class="nav nav-tabs" role="tablist">
+            <div class="row">
 
-                <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#cartCustumer" role="tab">Meu Carrinho</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#cartProducts" role="tab">Produtos</a>
-                </li>
-
-            </ul>
-
-            <div class="tab-content">
-
-                <div class="tab-pane active" id="cartCustumer" role="tabpanel"><br>
-                    <p>Lorem Ipsum</p>
+                <div class="col-lg-6">
+                    <table id="tblCart" class="table table-hover" style="font-size: 10px; width: 100%"></table>
                 </div>
 
-                <div class="tab-pane" id="cartProducts" role="tabpanel"><br>
-                    <p>Ipsum Lorem</p>
+                <div class="col-lg-6">
+                    <h3>Meu Carrinho</h3><hr>
+
+                    <div id="cartProducts"></div>
+
+                    <div class="col-lg-4 mt-5">
+                        <b>Imposto</b>: <span id="cartTaxTotal">0</span><br>
+                        <b>Total</b>: <span id="cartTotal">0</span>
+                    </div>
+
                 </div>
 
             </div>
 
         </div>
     </div>
+
 </div>
 
 {% endblock %}

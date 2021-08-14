@@ -8,26 +8,27 @@ use App\Model\ProductModel;
 
 use App\Helper\Input;
 
-class Product extends Controller
+class TypeProduct extends Controller
 {
     private $model;
+    private $table = 'typeproducts';
 
     public function __construct()
     {
         $this->model = new ProductModel;
+        $this->model->table = $this->table;
     }
 
     public function getAll()
     {
         try {
 
-            $this->model->leftTable = 'typeproducts ON typeproducts.id = products.type';
-            $this->model->colunms = 'products.id, products.name, products.price, typeproducts.price as tax';
+            $this->model->colunms = ['typeproducts.id', 'typeproducts.name', 'typeproducts.price'];
 
             $data = $this->model->select();
 
             if (!$data) :
-                $response = ['message' => 'Nenhum produto encontrado.', 'class' => 'info'];
+                $response = ['message' => 'Nenhum tipo de produto encontrado.', 'class' => 'info'];
             endif;
 
             $response = ['data' => $data];
@@ -42,14 +43,16 @@ class Product extends Controller
     public function create()
     {
         try {
+            
+            $this->model->colunms = ['typeproducts.name', 'typeproducts.price'];
 
             $data = $this->model->create(Input::post($_POST));
 
             if (!$data) :
-                $response = ['message' => 'Produto não foi cadastrado.', 'class' => 'info'];
+                $response = ['message' => 'Tipo de produto não foi cadastrado.', 'class' => 'info'];
             endif;
 
-            $response = ['message' => 'Produto cadastrado com sucesso.', 'class' => 'success'];
+            $response = ['message' => 'Tipo de produto cadastrado com sucesso.', 'class' => 'success'];
 
         } catch (\Exception $e) {
             $response = ['message' => $e->getMessage()];

@@ -16,7 +16,7 @@ const Fill = {
         options.push($('<option/>').val(null).text('Selecione'));
 
         for (var i in data) {
-            options.push($('<option/>').val(data[i].ID).text(data[i].TEXT));
+            options.push($('<option/>').val(data[i].id).text(data[i].name));
         }
 
         seletor.html(options);
@@ -30,19 +30,31 @@ const Message = {
     Toast: function (data) {
 
         if (data.message) {
-            if (data.class === "success") {
-                toastr.success(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
-            } else if (data.class === "warning") {
-                toastr.warning(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
-            } else if (data.class === "info") {
-                toastr.info(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
-            } else if (data.class === "danger") {
-                toastr.error(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
-            } else if (data.class === "custom") {
-                toastr.info(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
-            } else {
-                toastr.error(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
+
+            switch (data.class) {
+
+                case 'success':
+                    toastr.success(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
+                break;
+
+                case 'warning':
+                    toastr.warning(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
+                break;
+
+                case 'info':
+                    toastr.info(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
+                break;
+
+                case 'danger':
+                    toastr.error(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
+                break;
+
+                default:
+                    toastr.error(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
+                break;
+
             }
+
         }
 
     },
