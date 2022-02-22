@@ -7,7 +7,7 @@
 <div class="col-lg-12 offset-lg-0">
 
     <div class="card">
-        <div class="card-header text-white bg-primary">Fa&ccedil;a suas Compras</div>
+        <div class="card-header text-white bg-dark">Fa&ccedil;a suas Compras</div>
         <div class="card-body">
 
             <div class="row">

@@ -5,8 +5,8 @@
 {% block body %}
 
 <div class="col-lg-10 offset-lg-1">
-    <div class="card">
-        <div class="card-header text-white bg-primary">Administrador</div>
+    <div class="card border-0">
+        <div class="card-header text-white bg-dark border-0">Administrador</div>
         <div class="card-body">
 
             <ul id="tabAdmin" class="nav nav-tabs" role="tablist">

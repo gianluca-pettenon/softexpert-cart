@@ -54,7 +54,7 @@ $(document).ready(function () {
         buttons: [
             {
                 text: "Adicionar",
-                className: "btn-info btn-sm",
+                className: "btn btn-dark btn-sm",
                 action: function (e, dt, node, config) {
                     $('#modalProduct').modal('show');
                 }

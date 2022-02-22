@@ -1,2 +1,18 @@
 @import url(../../libs/datatable/css/datatable.min.css);
 @import url(../../libs/toastr/css/toastr.min.css);
+
+:root {
+    --background: rgb(29, 32, 33);
+    --red: #E52E54;
+    --blue: #133862;
+}
+
+body {
+    background: var(--background);
+}
+
+.logo {
+    height: 55px;
+    width: 215px;
+    background: url(../img/softexpert.png) no-repeat;
+}

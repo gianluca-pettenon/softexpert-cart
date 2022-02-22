@@ -1,8 +1,24 @@
 const App = {
 
-    Init: function () {
-
+    init: function () {
         $('input[type="text"]').prop('autocomplete', 'off');
+    },
+
+    toolbar: function () {
+
+        let uri = window.location.pathname;
+
+        $(".nav-link").each(function () {
+
+            let href = $(this).attr("href");
+
+            $(this).removeClass("active");
+
+            if (href == uri) {
+                $(this).addClass("active");
+            }
+
+        });
 
     }
 }
@@ -11,12 +27,14 @@ const Fill = {
 
     Select: function (seletor, data) {
 
-        var options = [];
+        let options = [];
 
         options.push($('<option/>').val(null).text('Selecione'));
 
-        for (var i in data) {
-            options.push($('<option/>').val(data[i].id).text(data[i].name));
+        for (let key in data) {
+            if (data.hasOwnProperty(key)) {
+                options.push($('<option/>').val(data[key].id).text(data[key].name));
+            }
         }
 
         seletor.html(options);
@@ -35,23 +53,23 @@ const Message = {
 
                 case 'success':
                     toastr.success(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
-                break;
+                    break;
 
                 case 'warning':
                     toastr.warning(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
-                break;
+                    break;
 
                 case 'info':
                     toastr.info(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
-                break;
+                    break;
 
                 case 'danger':
                     toastr.error(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
-                break;
+                    break;
 
                 default:
                     toastr.error(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
-                break;
+                    break;
 
             }
 
@@ -65,6 +83,43 @@ const Validate = {
     onlyLetters: function (value) {
         return /[A-z][ ][A-z]/.test(value);
     },
+
+    requiredFields: function (fields) {
+
+        for (let i = 0; i < fields.length; i++) {
+
+            let element = fields[i];
+
+            if (element.required !== undefined && element.required) {
+
+                if (element.value == null || element.value == "") {
+                    Message.Toast({ 'message': 'Preencha os campos obrigat&oacute;rios.', 'class': 'warning' });
+                    return true;
+                }
+
+            }
+
+        }
+
+        return false;
+    },
+
+    checkPercentage: function (fields) {
+
+        for (let i = 0; i < fields.length; i++) {
+
+            let element = fields[i];
+
+            if (parseFloat(element.value) > 100) {
+                Message.Toast({ 'message': 'Percentual maior que 100%', 'class': 'warning' });
+                return false;
+            }
+
+        }
+
+        return true;
+    },
+
 };
 
 
@@ -103,4 +158,5 @@ const Language = {
 
 };
 
-App.Init();
+App.init();
+App.toolbar();

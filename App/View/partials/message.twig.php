@@ -3,8 +3,8 @@
 {% block title %}{{title}} - {% endblock %}
 
 {% block body %}
-<div class="max-width center-screen bg-white padding mt-5">
-    
+<div class="max-width center-screen bg-dark padding mt-5">
+
     <h1>{{title}}</h1>
 
     <hr>
