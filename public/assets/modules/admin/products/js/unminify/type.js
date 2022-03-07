@@ -1,4 +1,6 @@
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function(e) {
+
+    const btnType = document.getElementById("btnType");
 
     $('#txtTypeTax').mask('##0.00', { reverse: true });
 
@@ -45,7 +47,7 @@ $(document).ready(function () {
         buttons: [
             {
                 text: "Adicionar",
-                className: "btn-dark btn-sm",
+                className: "btn btn-dark btn-sm",
                 action: function (e, dt, node, config) {
                     $('#modalType').modal('show');
                 }
@@ -56,25 +58,27 @@ $(document).ready(function () {
 
     });
 
-    $("#btnType").off("click").on("click", function () {
+    btnType.addEventListener("click", () => {
 
-        var params = {
-            'name': $("#txtTypeName").val(),
-            'price': $("#txtTypeTax").val(),
-        };
+        let params = [
+            {
+                field: "name",
+                value: $("#txtTypeName").val(),
+                required: true,
+                maxLength: 100,
+            },
+            {
+                field: "price",
+                value: $("#txtTypeTax").val(),
+                required: true,
+            }
+        ];
 
-        if (params['name'] == null || params['name'] == "") {
-            Message.Toast({ 'message': 'Tipo de produto n&atilde;o informado.', 'class': 'warning' });
+        if(Validate.requiredFields(params)) {
             return false;
         }
 
-        if (params['price'] == null || params['price'] == "") {
-            Message.Toast({ 'message': 'Percentual do imposto n&atilde;o informado.', 'class': 'warning' });
-            return false;
-        }
-
-        if (parseFloat(params['price']) > 100) {
-            Message.Toast({ 'message': 'Percentual n&atilde;o fecha em 100%', 'class': 'warning' });
+        if(!Validate.checkPercentage(params)) {
             return false;
         }
 

@@ -1,4 +1,58 @@
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function(e) {
+
+    const btnProduct = document.getElementById("btnProduct");
+
+    const Fields = {
+
+        get: function () {
+
+            return [
+                {
+                    field: "name",
+                    value: document.getElementById("txtProductName").value,
+                    required: true,
+                    maxLength: 100,
+                },
+                {
+                    field: "type",
+                    value: document.getElementById("txtProductType").value,
+                    required: true,
+                },
+                {
+                    field: "price",
+                    value: document.getElementById("txtProductPrice").value,
+                    required: true,
+                }
+            ];
+
+        },
+
+    }
+
+    const Table = {
+
+        get: function () {
+
+        },
+
+        columns: function () {
+            return [
+                {
+                    title: "PRODUTO",
+                    data: "name"
+                },
+                {
+                    title: "PRE&Ccedil;O",
+                    data: "price",
+                },
+                {
+                    title: "IMPOSTO",
+                    data: "tax",
+                },
+            ];
+        },
+
+    }
 
     $('#txtProductPrice').mask('##0.00', { reverse: true });
 
@@ -20,32 +74,9 @@ $(document).ready(function () {
                 console.log(xhr);
                 Message.Toast({ 'message': thrownError, 'class': 'danger' });
             },
-            complete: function (xhr, status) { },
         },
 
-        columns:
-            [
-                {
-                    title: "PRODUTO",
-                    data: "name"
-                },
-                {
-                    title: "PRE&Ccedil;O",
-                    data: "price",
-                    render: function (data, type, row) {
-                        return 'R$' + data;
-                    }
-                },
-                {
-                    title: "IMPOSTO",
-                    data: "tax",
-                    render: function (data, type, row) {
-                        return data + '%';
-                    }
-                },
-
-            ],
-
+        columns: Table.columns(),
         processing: false,
         bInfo: false,
         ordering: false,
@@ -53,9 +84,9 @@ $(document).ready(function () {
         dom: "Bfrtp",
         buttons: [
             {
-                text: "Adicionar",
-                className: "btn btn-dark btn-sm",
-                action: function (e, dt, node, config) {
+                text: "ADICIONAR",
+                className: "btn-dark btn-sm",
+                action: function () {
                     $('#modalProduct').modal('show');
                 }
             },
@@ -65,35 +96,20 @@ $(document).ready(function () {
 
     });
 
-    $("#btnProduct").off("click").on("click", function () {
+    btnProduct.addEventListener("click", () => {
 
-        var params = {
-            'name': $("#txtProductName").val(),
-            'type': $("#txtProductType").val(),
-            'price': $("#txtProductPrice").val(),
-        };
+        let fields = Fields.get();
 
-        if (params['name'] == null || params['name'] == "") {
-            Message.Toast({ 'message': 'Produto n&atilde;o informado.', 'class': 'warning' });
-            return false;
-        }
-
-        if (params['type'] == null || params['type'] == "") {
-            Message.Toast({ 'message': 'Tipo de produto n&atilde;o informado.', 'class': 'warning' });
-            return false;
-        }
-
-        if (params['price'] == null || params['price'] == "") {
-            Message.Toast({ 'message': 'Valor do produto n&atilde;o informado.', 'class': 'warning' });
+        if (Validate.requiredFields(fields)) {
             return false;
         }
 
         $("#btnProduct").prop('disabled', true);
 
         $.ajax({
-            url: '/product/create',
-            type: 'POST',
-            data: params,
+            url: "/product/create",
+            type: "POST",
+            data: fields,
             success: function (data) {
 
                 if (data) {
@@ -118,21 +134,18 @@ $(document).ready(function () {
 
     });
 
-    function loadType() {
-        $.ajax({
-            url: '/product/type',
-            type: 'POST',
-            success: function (data) {
-                if (data) {
-                    Fill.Select($("#txtProductType"), data.data);
-                }
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                console.log(xhr);
-                Message.Toast({ 'message': thrownError, 'class': 'danger' });
-            },
-            complete: function (xhr, status) { },
-        });
+    async function loadType() {
+
+        let getData = Request.create({
+            url: '/product/type'
+        })
+
+        return console.log(getData);
+
+        if (data) {
+            Fill.Select($("#txtProductType"), data.data);
+        }
+
     }
 
 
