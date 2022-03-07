@@ -4,21 +4,26 @@ namespace App\Helper;
 
 class Input
 {
-    public static function get($value, int $filter = FILTER_SANITIZE_STRING)
-    {
-        if (is_array($value)) :
-            return filter_input_array(INPUT_GET, $value, $filter);
-        endif;
 
-        return filter_input(INPUT_POST, $value, $filter);
+    private const METHODFILTER = FILTER_SANITIZE_FULL_SPECIAL_CHARS;
+
+    /**
+     * @param array $value
+     * @return array
+     */
+
+    public static function get($value)
+    {
+        return filter_input_array(INPUT_GET, $value, static::METHODFILTER);
     }
 
-    public static function post($value, int $filter = FILTER_SANITIZE_STRING)
-    {
-        if (is_array($value)) :
-            return filter_input_array(INPUT_POST, $value, $filter);
-        endif;
+    /**
+     * @param array $value
+     * @return array
+     */
 
-        return filter_input(INPUT_POST, $value, $filter);
+    public static function post($value)
+    {
+        return filter_input_array(INPUT_POST, $value, static::METHODFILTER);
     }
 }

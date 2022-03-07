@@ -9,6 +9,8 @@
 
 body {
     background: var(--background);
+    padding: 0;
+    margin: 0;
 }
 
 .logo {

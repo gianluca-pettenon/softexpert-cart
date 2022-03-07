@@ -6,7 +6,7 @@ class Controller
 {
     protected function load(string $view, $params = [])
     {
-        $twig = new \Twig\Environment(new \Twig\Loader\FilesystemLoader('../App/View/'));
+        $twig = new \Twig\Environment(new \Twig\Loader\FilesystemLoader('../app/View/'));
 
         $twig->addGlobal('BASEURL', BASEURL);
         echo $twig->render($view . '.twig.php', $params);

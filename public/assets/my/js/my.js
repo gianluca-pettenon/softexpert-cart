@@ -20,7 +20,44 @@ const App = {
 
         });
 
-    }
+    },
+
+}
+
+const Config = {
+
+    toast: function () {
+        return {
+            showMethod: "slideDown",
+            hideMethod: "slideDown",
+            timeOut: 2500
+        };
+    },
+
+}
+
+const Request = {
+
+    create: function (params) {
+
+        if (params.url == undefined) {
+            return { 'error': true, 'message': 'URL n&atilde;o definida.', 'class': 'error' };
+        }
+
+        if (params.data == undefined) {
+            params.data = {};
+        }
+
+
+        fetch(`${params.url}`)
+            .then((body) => body.json())
+            .then((data) => {
+                console.log(data)
+            })
+            .catch((error) => console.error('Erro:', error.message || error))
+
+    },
+
 }
 
 const Fill = {
@@ -52,24 +89,19 @@ const Message = {
             switch (data.class) {
 
                 case 'success':
-                    toastr.success(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
-                    break;
+                    return toastr.success(data.message, Config.toast);
 
                 case 'warning':
-                    toastr.warning(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
-                    break;
+                    return toastr.warning(data.message, Config.toast);
 
                 case 'info':
-                    toastr.info(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
-                    break;
+                    return toastr.info(data.message, Config.toast);
 
                 case 'danger':
-                    toastr.error(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
-                    break;
+                    return toastr.error(data.message, Config.toast);
 
                 default:
-                    toastr.error(data.message, { "showMethod": "slideDown", "hideMethod": "slideDown", timeOut: 2500 });
-                    break;
+                    return toastr.error(data.message, Config.toast);
 
             }
 
@@ -121,7 +153,6 @@ const Validate = {
     },
 
 };
-
 
 const Language = {
 

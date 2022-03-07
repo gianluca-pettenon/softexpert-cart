@@ -9,31 +9,11 @@ class ProductModel
     public $table = 'products';
     public $colunms = ['id', 'name', 'type', 'price'];
     public $leftTable;
-    private $values = [];
     private $db;
-    private $name;
-    private $type;
-    private $price;
 
     public function __construct()
     {
         $this->db = Database::getConnection();
-        $this->value = [];
-    }
-
-    public function setName($name)
-    {
-        $this->value['name'] = $name;
-    }
-
-    public function setType($type)
-    {
-        $this->value['type'] = $type;
-    }
-
-    public function setPrice($price)
-    {
-        $this->value['price'] = $price;
     }
 
     public function create(array $values)
@@ -44,9 +24,6 @@ class ProductModel
             $this->db->close();
 
             return $result;
-
-        } catch (\Throwable $t) {
-            return $t->getMessage();
 
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -68,9 +45,6 @@ class ProductModel
             $this->db->close();
 
             return $result;
-            
-        } catch (\Throwable $t) {
-            return $t->getMessage();
 
         } catch (\Exception $e) {
             return $e->getMessage();

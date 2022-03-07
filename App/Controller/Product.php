@@ -31,7 +31,7 @@ class Product extends Controller
             endif;
 
             $response = ['data' => $data];
-            
+
         } catch (\Exception $e) {
             $response = ['message' => $e->getMessage()];
         }

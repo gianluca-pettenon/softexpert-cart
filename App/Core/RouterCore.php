@@ -12,7 +12,7 @@ class RouterCore
     public function __construct()
     {
         $this->initialize();
-        require_once('../App/Config/Router.php');
+        require_once('../app/Config/Router.php');
         $this->execute();
     }
 
@@ -21,17 +21,17 @@ class RouterCore
         $this->method = $_SERVER['REQUEST_METHOD'];
 
         $uri = $_SERVER['REQUEST_URI'];
-     
+
         if (strpos($uri, '?'))
             $uri = mb_substr($uri, 0, strpos($uri, '?'));
 
-            
+
         $ex = explode('/', $uri);
-       
+
         $uri = $this->normalizeURI($ex);
-        
+
         $this->uri = implode('/', $this->normalizeURI($uri));
-        
+
         if (DEBUG_URI)
             var_dump(($this->uri));
     }
