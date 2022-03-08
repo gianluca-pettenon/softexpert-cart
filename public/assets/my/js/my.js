@@ -1,14 +1,14 @@
 const App = {
 
-    init: function () {
+    init: function() {
         $('input[type="text"]').prop('autocomplete', 'off');
     },
 
-    toolbar: function () {
+    toolbar: function() {
 
         let uri = window.location.pathname;
 
-        $(".nav-link").each(function () {
+        $(".nav-link").each(function() {
 
             let href = $(this).attr("href");
 
@@ -24,45 +24,40 @@ const App = {
 
 }
 
+const Modal = {
+
+    show: function(element) {
+
+        let modal = new bootstrap.Modal(document.getElementById(element), {});
+        modal.show();
+
+    },
+
+    hide: function(element) {
+
+        let modal = new bootstrap.Modal(document.getElementById(element), {});
+        modal.hide();
+
+    }
+
+}
+
 const Config = {
 
-    toast: function () {
+    toast: function() {
         return {
             showMethod: "slideDown",
             hideMethod: "slideDown",
+            preventDuplicates: true,
             timeOut: 2500
         };
     },
 
 }
 
-const Request = {
-
-    create: function (params) {
-
-        if (params.url == undefined) {
-            return { 'error': true, 'message': 'URL n&atilde;o definida.', 'class': 'error' };
-        }
-
-        if (params.data == undefined) {
-            params.data = {};
-        }
-
-
-        fetch(`${params.url}`)
-            .then((body) => body.json())
-            .then((data) => {
-                console.log(data)
-            })
-            .catch((error) => console.error('Erro:', error.message || error))
-
-    },
-
-}
-
 const Fill = {
 
-    Select: function (seletor, data) {
+    select: function(seletor, data) {
 
         let options = [];
 
@@ -82,7 +77,7 @@ const Fill = {
 
 const Message = {
 
-    Toast: function (data) {
+    Toast: function(data) {
 
         if (data.message) {
 
@@ -112,11 +107,11 @@ const Message = {
 
 const Validate = {
 
-    onlyLetters: function (value) {
+    onlyLetters: function(value) {
         return /[A-z][ ][A-z]/.test(value);
     },
 
-    requiredFields: function (fields) {
+    requiredFields: function(fields) {
 
         for (let i = 0; i < fields.length; i++) {
 
@@ -136,7 +131,28 @@ const Validate = {
         return false;
     },
 
-    checkPercentage: function (fields) {
+    checkMaxLengthFields: function(fields) {
+
+        for (let i = 0; i < fields.length; i++) {
+
+            let element = fields[i];
+
+            if (element.maxLength !== undefined) {
+
+                if (element.value.length > element.maxLength) {
+                    Message.Toast({ 'message': 'Caracteres exedidos.', 'class': 'warning' });
+                    return true;
+                }
+
+            }
+
+        }
+
+        return true;
+
+    },
+
+    checkPercentage: function(fields) {
 
         for (let i = 0; i < fields.length; i++) {
 
