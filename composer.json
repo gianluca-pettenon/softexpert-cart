@@ -7,8 +7,8 @@
         }
     ],
     "require": {
-        "php": ">=8.0",
-        "twig/twig": "^3.0",
+        "php": ">=7.4 || >=8.0",
+        "smarty/smarty": "^4.1",
         "phpunit/phpunit": "9.5.8",
         "envms/fluentpdo": "^2.2.0",
         "vlucas/phpdotenv": "^5.4"
@@ -19,7 +19,7 @@
         }
     },
     "scripts": {
-        "serve": "php -S localhost:8080 -t public",
+        "serve": "php -S 0.0.0.0:8080 -t public",
         "test": "phpunit"
     }
 }

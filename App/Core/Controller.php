@@ -2,21 +2,27 @@
 
 namespace App\Core;
 
+use App\Libraries\Smarty;
+use Smarty as SmartyTemplate;
+
 class Controller
 {
-    protected function load(string $view, $params = [])
-    {
-        $twig = new \Twig\Environment(new \Twig\Loader\FilesystemLoader('../app/View/'));
 
-        $twig->addGlobal('BASEURL', BASEURL);
-        echo $twig->render($view . '.twig.php', $params);
+    protected function view(string $view, array $data = []): void
+    {
+        $smarty = new Smarty(new SmartyTemplate);
+
+        $smarty->setData($data);
+        $smarty->setView($view);
+        $smarty->load();
     }
 
-    public function showMessage(string $title, string $description, int $httpCode = 200)
+    public function showMessage(string $title, string $description, int $httpCode = 200): void
     {
         http_response_code($httpCode);
 
-        $this->load('partials/message',
+        $this->view(
+            'partials/message',
             [
                 'title' => $title,
                 'description' => $description

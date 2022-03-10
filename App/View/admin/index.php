@@ -1,8 +1,5 @@
-{% extends 'partials/body.twig.php'  %}
-
-{% block title %}Administrador{% endblock %}
-
-{% block body %}
+{extends file="template/layout.php"}
+{block name=main}
 
 <div class="col-lg-10 offset-lg-1">
     <div class="card border-0">
@@ -122,4 +119,4 @@
     </div>
 </div>
 
-{% endblock %}
+{/block}

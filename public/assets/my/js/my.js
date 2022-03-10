@@ -1,13 +1,18 @@
 const App = {
 
-    init: function() {
-        $('input[type="text"]').prop('autocomplete', 'off');
+    init: () => {
+
+        const element = document.querySelectorAll('input[type="text"]');
+
+
+
     },
 
-    toolbar: function() {
+    toolbar: () => {
 
-        let uri = window.location.pathname;
-
+        const uri = window.location.pathname;
+        //const element = document.querySelectorAll('.nav-link');
+        //console.log(element);
         $(".nav-link").each(function() {
 
             let href = $(this).attr("href");
@@ -26,14 +31,14 @@ const App = {
 
 const Modal = {
 
-    show: function(element) {
+    show: (element) => {
 
         let modal = new bootstrap.Modal(document.getElementById(element), {});
         modal.show();
 
     },
 
-    hide: function(element) {
+    hide: (element) => {
 
         let modal = new bootstrap.Modal(document.getElementById(element), {});
         modal.hide();
@@ -44,7 +49,7 @@ const Modal = {
 
 const Config = {
 
-    toast: function() {
+    toast: () => {
         return {
             showMethod: "slideDown",
             hideMethod: "slideDown",
@@ -57,7 +62,7 @@ const Config = {
 
 const Fill = {
 
-    select: function(seletor, data) {
+    select: (seletor, data) => {
 
         let options = [];
 
@@ -77,7 +82,7 @@ const Fill = {
 
 const Message = {
 
-    Toast: function(data) {
+    Toast: (data) => {
 
         if (data.message) {
 
@@ -107,11 +112,11 @@ const Message = {
 
 const Validate = {
 
-    onlyLetters: function(value) {
+    onlyLetters: (value) => {
         return /[A-z][ ][A-z]/.test(value);
     },
 
-    requiredFields: function(fields) {
+    requiredFields: (fields) => {
 
         for (let i = 0; i < fields.length; i++) {
 
@@ -131,7 +136,7 @@ const Validate = {
         return false;
     },
 
-    checkMaxLengthFields: function(fields) {
+    checkMaxLengthFields: (fields) => {
 
         for (let i = 0; i < fields.length; i++) {
 
@@ -152,7 +157,7 @@ const Validate = {
 
     },
 
-    checkPercentage: function(fields) {
+    checkPercentage: (fields) => {
 
         for (let i = 0; i < fields.length; i++) {
 

@@ -1,8 +1,5 @@
-{% extends 'partials/body.twig.php'  %}
-
-{% block title %}In&iacute;cio {% endblock %}
-
-{% block body %}
+{extends file="template/layout.php"}
+{block name=main}
 
 <div class="col-lg-12 offset-lg-0">
 
@@ -35,4 +32,4 @@
 
 </div>
 
-{% endblock %}
+{/block}

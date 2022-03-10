@@ -23,7 +23,6 @@
     <script src="{{BASEURL}}/assets/libs/jquery/js/jquery.mask.min.js"></script>
     <script src="{{BASEURL}}/assets/libs/toastr/js/toastr.min.js"></script>
     <script src="{{BASEURL}}/assets/libs/datatable/js/datatable.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script src="{{BASEURL}}/assets/my/js/my.js"></script>
     <script src="{{BASEURL}}/assets/modules/admin/products/js/products.min.js"></script>
