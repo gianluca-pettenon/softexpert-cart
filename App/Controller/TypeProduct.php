@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Core\Controller;
+use App\Controller\Controller;
 use App\Libraries\Response;
 use App\Model\ProductModel;
 
@@ -32,18 +32,18 @@ class TypeProduct extends Controller
             endif;
 
             $response = ['data' => $data];
-            
+
         } catch (\Exception $e) {
             $response = ['message' => $e->getMessage()];
         }
 
-        return Response::set($response);
+        return Response::json($response);
     }
 
     public function create()
     {
         try {
-            
+
             $this->model->colunms = ['typeproducts.name', 'typeproducts.price'];
 
             $data = $this->model->create(Input::post($_POST));
@@ -58,6 +58,6 @@ class TypeProduct extends Controller
             $response = ['message' => $e->getMessage()];
         }
 
-        return Response::set($response);
+        return Response::json($response);
     }
 }

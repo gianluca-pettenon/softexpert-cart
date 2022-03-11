@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Core\Controller;
+use App\Controller\Controller;
 use App\Libraries\Response;
 use App\Model\ProductModel;
 
@@ -10,12 +10,9 @@ use App\Helper\Input;
 
 class Product extends Controller
 {
-    private $model;
-
-    public function __construct()
-    {
-        $this->model = new ProductModel;
-    }
+    public function __construct(
+        private $model = new ProductModel,
+    ) {}
 
     public function getAll()
     {
@@ -36,7 +33,7 @@ class Product extends Controller
             $response = ['message' => $e->getMessage()];
         }
 
-        return Response::set($response);
+        return Response::json($response);
     }
 
     public function create()
@@ -55,6 +52,6 @@ class Product extends Controller
             $response = ['message' => $e->getMessage()];
         }
 
-        return Response::set($response);
+        return Response::json($response);
     }
 }

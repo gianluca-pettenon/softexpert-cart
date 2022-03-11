@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Core;
+namespace App\Controller;
 
 use App\Libraries\Smarty;
 use Smarty as SmartyTemplate;
 
 class Controller
 {
-
     protected function view(string $view, array $data = []): void
     {
         $smarty = new Smarty(new SmartyTemplate);
@@ -22,7 +21,7 @@ class Controller
         http_response_code($httpCode);
 
         $this->view(
-            'partials/message',
+            'message/message',
             [
                 'title' => $title,
                 'description' => $description

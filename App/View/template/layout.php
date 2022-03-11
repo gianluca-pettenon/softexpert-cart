@@ -49,8 +49,8 @@
 
     <script src="/assets/my/js/my.js"></script>
     <script src="/assets/modules/admin/products/js/products.min.js"></script>
-    <script src="/assets/modules/admin/products/js/type.min.js"></script>
-    <script src="/assets/modules/cart/js/cart.min.js"></script>
+    <!--<script src="/assets/modules/admin/products/js/type.min.js"></script>
+    <script src="/assets/modules/cart/js/cart.min.js"></script>-->
 
 </body>
 

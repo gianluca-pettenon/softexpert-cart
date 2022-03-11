@@ -7,7 +7,7 @@
         }
     ],
     "require": {
-        "php": ">=7.4 || >=8.0",
+        "php": ">=8.0",
         "smarty/smarty": "^4.1",
         "phpunit/phpunit": "9.5.8",
         "envms/fluentpdo": "^2.2.0",

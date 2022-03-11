@@ -7,14 +7,12 @@ use Smarty as SmartyTemplate;
 
 class Smarty
 {
-    private $smarty;
-    private $data;
-    private $view;
+    private array $data;
+    private string $view;
 
-    public function __construct(SmartyTemplate $smarty)
-    {
-        $this->smarty = $smarty;
-    }
+    public function __construct(
+        private SmartyTemplate $smarty
+    ) {}
 
     private function initial(): void
     {
@@ -24,27 +22,49 @@ class Smarty
         $this->smarty->setCacheDir(SmartyConfig::getPathCache());
     }
 
+    /**
+     * @param array $data
+     * @return void
+     */
+
     public function setData(array $data): void
     {
         $this->data = $data;
     }
+
+    /**
+     * @param string $view
+     * @return void
+     */
 
     public function setView(string $view): void
     {
         $this->view = $view;
     }
 
+    /**
+     * @return array $data
+     */
+
     private function getData(): array
     {
         return $this->data;
     }
+
+    /**
+     * @return string $view
+     */
 
     private function getView(): string
     {
         return $this->view;
     }
 
-    public function load()
+    /**
+     * @return void
+     */
+
+    public function load(): void
     {
         $this->initial();
 

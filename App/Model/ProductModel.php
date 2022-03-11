@@ -2,9 +2,9 @@
 
 namespace App\Model;
 
-use App\Core\Database;
+use App\Model\Model;
 
-class ProductModel
+class ProductModel extends Model
 {
     public $table = 'products';
     public $colunms = ['id', 'name', 'type', 'price'];
@@ -13,7 +13,7 @@ class ProductModel
 
     public function __construct()
     {
-        $this->db = Database::getConnection();
+        //$this->db = Database::getConnection();
     }
 
     public function create(array $values)

@@ -6,12 +6,11 @@ class Response
 {
 
      /**
-     * Inject response in json format
      * @param array $response
-     * @return array
+     * @return object
      */
 
-    public static function set(array $response) : array
+    public static function json(array $response) : object
     {
         if (!headers_sent()) :
             header('Content-Type: application/json');
