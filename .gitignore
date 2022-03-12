@@ -1,3 +1,4 @@
 /vendor/
 composer.lock
 /app/View/compile/
+.env

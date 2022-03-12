@@ -9,8 +9,7 @@ class Model implements InterfaceModel
 {
     public function __construct(
         private Database $database
-    ) {
-    }
+    ) {}
 
     public function insert()
     {
