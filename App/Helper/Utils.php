@@ -5,10 +5,19 @@ namespace App\Helper;
 class Utils
 {
 
+    /**
+     * @param string $value
+     * @return string
+     */
+
     public static function getEnv(string $value): string
     {
         return getenv($value);
     }
+
+    /**
+     * @return bool
+     */
 
     public static function isDevelopment(): bool
     {
@@ -18,6 +27,10 @@ class Utils
 
         return false;
     }
+
+    /**
+     * @return bool
+     */
 
     public static function checkEnableDebug(): bool
     {
