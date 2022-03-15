@@ -9,17 +9,17 @@ use PDO;
 class Database
 {
 
-    private $connect = null;
-
-    private function connect()
+    public static function connect()
     {
         try {
 
-            $this->connect = new PDO(
-                Utils::getEnv('database.hostname') . ':host=' . Utils::getEnv('database.hostname') . ';dbname=' . Utils::getEnv('database.database'),
+            $pdo = new PDO(
+                Utils::getEnv('database.driver') . ':host=' . Utils::getEnv('database.hostname') . ';dbname=' . Utils::getEnv('database.database'),
                 Utils::getEnv('database.username'),
                 Utils::getEnv('database.password')
             );
+
+            $connect = new \Envms\FluentPDO\Query($pdo);
 
         } catch (\PDOException $e) {
 
@@ -28,11 +28,6 @@ class Database
             }
         }
 
-        return $this->connect;
-    }
-
-    protected function getConnect()
-    {
-        return $this->connect();
+        return $connect;
     }
 }

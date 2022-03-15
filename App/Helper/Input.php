@@ -6,6 +6,7 @@ class Input
 {
 
     private const METHODFILTER = FILTER_SANITIZE_FULL_SPECIAL_CHARS;
+	// FILTER_SANITIZE_STRING
 
     /**
      * @param array $value

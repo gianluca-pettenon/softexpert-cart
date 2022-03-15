@@ -22,7 +22,7 @@ class Product extends Controller
             $this->model->colunms = 'products.id, products.name, products.price, typeproducts.price as tax';
 
             $data = $this->model->select();
-
+            return $data;
             if (!$data) :
                 $response = ['message' => 'Nenhum produto encontrado.', 'class' => 'info'];
             endif;

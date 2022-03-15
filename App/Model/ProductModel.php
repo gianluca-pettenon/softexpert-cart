@@ -6,35 +6,33 @@ use App\Model\Model;
 
 class ProductModel extends Model
 {
-    public $table = 'products';
-    public $colunms = ['id', 'name', 'type', 'price'];
-    public $leftTable;
-    private $db;
+    protected string $table = "products";
+    protected string $primaryKey = "id";
+    protected array $allowedFields = ["name", "type", "price"];
+    protected string $leftTable = "";
 
     public function __construct()
     {
-        //$this->db = Database::getConnection();
+        parent::__construct();
     }
 
-    public function create(array $values)
+    public function create(array $values): array|bool
     {
         try {
 
-            $result = $this->db->insertInto($this->table, $values)->execute();
-            $this->db->close();
-
-            return $result;
+            $result = parent::insert($this->table, $values);
 
         } catch (\Exception $e) {
             return $e->getMessage();
         }
 
-        return false;
+        return $result;
     }
 
     public function select()
     {
-        try {
+        var_dump(parent::select());
+        /*try {
 
             if($this->leftTable !== null) :
                 $result = $this->db->from($this->table)->leftJoin($this->leftTable)->select($this->colunms)->fetchAll();
@@ -50,6 +48,6 @@ class ProductModel extends Model
             return $e->getMessage();
         }
 
-        return false;
+        return false;*/
     }
 }
