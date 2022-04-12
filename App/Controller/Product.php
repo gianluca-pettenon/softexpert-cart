@@ -11,9 +11,11 @@ use App\Helper\Input;
 class Product extends Controller
 {
 
-    public function __construct(ProductService $service)
+    private ProductService $service;
+
+    public function __construct()
     {
-        $this->service = $service;
+        $this->service = new ProductService;
     }
 
     /**
@@ -22,7 +24,6 @@ class Product extends Controller
 
     public function getAll()
     {
-        return var_dump($this->service);
-        //return Response::json($this->service->getAll());
+        return Response::json($this->service->getAll());
     }
 }

@@ -7,9 +7,11 @@ use App\Repository\ProductRepository;
 class ProductService
 {
 
+    private ProductRepository $repository;
+
     public function __construct()
     {
-
+        $this->repository = new ProductRepository;
     }
 
     /**
@@ -18,7 +20,7 @@ class ProductService
 
     public function getAll()
     {
-
+        return $this->repository->getAll();
     }
 
 }

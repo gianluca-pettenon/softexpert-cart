@@ -6,10 +6,10 @@ use App\Repository\Repository;
 
 class ProductRepository extends Repository
 {
-    public string $table = "products";
+    public string $allowedEntity = "products";
     public string $leftTable = "";
     protected string $primaryKey = "id";
-    protected array $allowedFields = ["name", "type", "price"];
+    protected array $allowedAttribute = ["id", "name", "type", "price"];
 
     public function __construct()
     {
@@ -18,6 +18,6 @@ class ProductRepository extends Repository
 
     public function getAll()
     {
-        return $this->select($this->table, $this->allowedFields);
+        return $this->select($this->allowedEntity, $this->allowedAttribute);
     }
 }

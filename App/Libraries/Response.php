@@ -5,12 +5,12 @@ namespace App\Libraries;
 class Response
 {
 
-     /**
-     * @param array $response
-     * @return object
+    /**
+     * @param array|string $response
+     * @return array|string
      */
 
-    public static function json(array $response) : object
+    public static function json(array|string $response): array|string
     {
         if (!headers_sent()) :
             header('Content-Type: application/json');

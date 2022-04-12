@@ -7,7 +7,7 @@ use App\Database\Database;
 class Repository
 {
 
-    private Database $connect;
+    private $connect;
 
     public function __construct()
     {
@@ -18,17 +18,17 @@ class Repository
      * @return int|bool - last inserted primary key
      */
 
-    public function insert(string $table, array $data): int|bool
+    public function insert(string $entity, array $values): int|bool
     {
-        return $this->connect->insertInto($table)->values($data)->execute();
+        return $this->connect->insertInto($entity)->values($values)->execute();
     }
 
     /**
      * @return array|bool - fetched rows
      */
 
-    public function select(string $table, array $colunms): array|bool
+    public function select(string $entity, array $attributes): array|bool
     {
-        return $this->connect->from($table)->select($colunms)->fetchAll();
+        return $this->connect->from($entity)->select($attributes)->fetchAll();
     }
 }
