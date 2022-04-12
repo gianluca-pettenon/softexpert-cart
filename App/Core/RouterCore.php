@@ -2,12 +2,13 @@
 
 namespace App\Core;
 
+use App\Helper\Utils;
 
 class RouterCore
 {
     private $uri;
-    private $method;
     private $getArr = [];
+    private const CONTROLLER_PATH = "App\\Controller\\";
 
     public function __construct()
     {
@@ -22,9 +23,9 @@ class RouterCore
 
         $uri = $_SERVER['REQUEST_URI'];
 
-        if (strpos($uri, '?'))
+        if (strpos($uri, '?')) {
             $uri = mb_substr($uri, 0, strpos($uri, '?'));
-
+        }
 
         $ex = explode('/', $uri);
 
@@ -32,8 +33,9 @@ class RouterCore
 
         $this->uri = implode('/', $this->normalizeURI($uri));
 
-        if (DEBUG_URI)
+        if (Utils::checkEnableDebug()) {
             var_dump(($this->uri));
+        }
     }
 
     private function get($router, $call)
@@ -54,40 +56,8 @@ class RouterCore
 
     private function execute()
     {
-        switch ($this->method) {
-
-            case 'GET':
-                $this->executeGet();
-            break;
-
-            case 'POST':
-                $this->executePost();
-            break;
-        }
-    }
-
-    private function executeGet()
-    {
         foreach ($this->getArr as $get) {
-            $r = substr($get['router'], 1);
 
-            if (substr($r, -1) == '/') {
-                $r = substr($r, 0, -1);
-            }
-            if ($r == $this->uri) {
-                if (is_callable($get['call'])) {
-                    $get['call']();
-                    break;
-                } else {
-                    $this->executeController($get['call']);
-                }
-            }
-        }
-    }
-
-    private function executePost()
-    {
-        foreach ($this->getArr as $get) {
             $r = substr($get['router'], 1);
 
             if (substr($r, -1) == '/') {
@@ -95,6 +65,7 @@ class RouterCore
             }
 
             if ($r == $this->uri) {
+
                 if (is_callable($get['call'])) {
                     $get['call']();
                     return;
@@ -110,22 +81,20 @@ class RouterCore
         $ex = explode('@', $get);
 
         if (!isset($ex[0]) || !isset($ex[1])) {
-            (new \App\Controller\Message)->message('Dados inválidos', 'Controller ou método não encontrado: ' . $get, 404);
-            return;
+            return (new \App\Controller\Message)->message('Dados inválidos', 'Controller ou método não encontrado: ' . $get, 404);
         }
 
-        $cont = 'App\\Controller\\' . $ex[0];
+        $cont = static::CONTROLLER_PATH . $ex[0];
 
         if (!class_exists($cont)) {
-            (new \App\Controller\Message)->message('Dados inválidos', 'Controller não encontrada: ' . $get, 404);
-            return;
+            return (new \App\Controller\Message)->message('Dados inválidos', 'Controller não encontrada: ' . $get, 404);
         }
-
 
         if (!method_exists($cont, $ex[1])) {
-            (new \App\Controller\Message)->message('Dados inválidos', 'Método não encontrado: ' . $get, 404);
-            return;
+            return (new \App\Controller\Message)->message('Dados inválidos', 'Método não encontrado: ' . $get, 404);
         }
+
+        //$container = require_once '../App/Config/Container.php';
 
         call_user_func_array([
             new $cont,

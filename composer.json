@@ -11,7 +11,8 @@
         "smarty/smarty": "^4.1",
         "phpunit/phpunit": "9.5.8",
         "envms/fluentpdo": "^2.2.0",
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "php-di/php-di": "^6.4"
     },
     "autoload": {
         "psr-4": {
