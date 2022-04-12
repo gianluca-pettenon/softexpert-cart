@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Repository\ProductRepository;
+use App\Helper\Utils;
 
 class ProductService
 {
@@ -20,7 +21,13 @@ class ProductService
 
     public function getAll()
     {
-        return $this->repository->getAll();
-    }
+        $data = $this->repository->getAll();
+        $checkEmptyResult = Utils::checkEmptyResult($data);
 
+        if (!$checkEmptyResult) :
+            return ['data' => $data];
+        endif;
+
+        return ['error' => true, 'message' => 'Nenhum registro encontrado.', 'class' => 'warning'];
+    }
 }

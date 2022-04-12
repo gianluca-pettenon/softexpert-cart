@@ -4,8 +4,6 @@ const App = {
 
         const element = document.querySelectorAll('input[type="text"]');
 
-
-
     },
 
     toolbar: () => {
@@ -171,6 +169,24 @@ const Validate = {
         }
 
         return true;
+    },
+
+};
+
+const Serialize = {
+
+    result: (data) => {
+
+        if (data.error) {
+            Message.Toast(data);
+        }
+
+        if (data.data) {
+            return data.data;
+        }
+
+        return {};
+
     },
 
 };

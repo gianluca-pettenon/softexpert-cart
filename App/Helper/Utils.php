@@ -44,4 +44,19 @@ class Utils
 
         return false;
     }
+
+    /**
+     * @param array $value
+     * @return bool
+     */
+
+    public static function checkEmptyResult(array $result): bool
+    {
+        if (empty($result)) :
+            return true;
+        endif;
+
+        return false;
+    }
+
 }
