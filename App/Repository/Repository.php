@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Database\Database;
+use App\Interface\InterfaceRepository;
 
-class Repository
+class Repository implements InterfaceRepository
 {
 
     private $connect;
@@ -15,6 +16,8 @@ class Repository
     }
 
     /**
+     * @param string $entity
+     * @param array $values
      * @return int|bool - last inserted primary key
      */
 
@@ -24,11 +27,25 @@ class Repository
     }
 
     /**
+     * @param string $entity
+     * @param array $attributes
      * @return array|bool - fetched rows
      */
 
     public function select(string $entity, array $attributes): array|bool
     {
         return $this->connect->from($entity)->select($attributes)->fetchAll();
+    }
+
+    /**
+     * @param string $entity
+     * @param string $leftJoin
+     * @param array $attributes
+     * @return array|bool - fetched rows
+     */
+
+    public function selectLeftJoin(string $entity, string $leftJoin, array $attributes): array|bool
+    {
+        return $this->connect->from($entity)->leftJoin($leftJoin)->select($attributes)->fetchAll();
     }
 }

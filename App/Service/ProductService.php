@@ -22,12 +22,17 @@ class ProductService
     public function getAll()
     {
         $data = $this->repository->getAll();
-        $checkEmptyResult = Utils::checkEmptyResult($data);
 
-        if (!$checkEmptyResult) :
-            return ['data' => $data];
+        if (!Utils::checkEmptyResult($data)) :
+            return ["data" => $data];
         endif;
 
-        return ['error' => true, 'message' => 'Nenhum registro encontrado.', 'class' => 'warning'];
+        return [
+            "error" => true,
+            "message" => "Nenhum registro encontrado.",
+            "class" => "warning"
+        ];
+
     }
+
 }
