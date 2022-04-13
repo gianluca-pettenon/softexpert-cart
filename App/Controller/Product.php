@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Controller\Controller;
 use App\Libraries\Response;
-use App\Service\ProductService;
+use App\Service\Product\ProductService;
 
 use App\Helper\Input;
 
