@@ -2,24 +2,26 @@ const App = {
 
     init: () => {
 
-        const element = document.querySelectorAll('input[type="text"]');
+        document.addEventListener("DOMContentLoaded", () => {
 
+            document.querySelector('input[type="text"]').setAttribute('autocomplete', 'off');
+
+        });
     },
 
     toolbar: () => {
 
-        const uri = window.location.pathname;
-        //const element = document.querySelectorAll('.nav-link');
-        //console.log(element);
+        const currentUri = window.location.pathname;
+        const navLink = document.querySelectorAll('.nav-link');
 
-        $(".nav-link").each(function () {
+        navLink.forEach(element => {
 
-            let href = $(this).attr("href");
+            let elementHref = element.getAttribute('href');
 
-            $(this).removeClass("active");
+            element.classList.remove('active');
 
-            if (href == uri) {
-                $(this).addClass("active");
+            if (elementHref == currentUri) {
+                element.classList.add('active');
             }
 
         });
