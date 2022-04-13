@@ -25,7 +25,9 @@ CREATE TABLE IF NOT EXISTS `products` (
   `name` varchar(100) NOT NULL,
   `type` int(11) NOT NULL,
   `price` float NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `type` (`type`),
+  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`type`) REFERENCES `typeproducts` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
