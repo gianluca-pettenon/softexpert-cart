@@ -53,8 +53,8 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="txtProductType" class="form-label mt-4">Tipo de Produto <span class="text-danger">*</span></label>
-                            <select class="form-select" id="txtProductType"></select>
+                            <label for="slcProductType" class="form-label mt-4">Tipo de Produto <span class="text-danger">*</span></label>
+                            <select class="form-select" id="slcProductType"></select>
                         </div>
 
                         <div class="form-floating">

@@ -11,7 +11,8 @@ const App = {
         const uri = window.location.pathname;
         //const element = document.querySelectorAll('.nav-link');
         //console.log(element);
-        $(".nav-link").each(function() {
+
+        $(".nav-link").each(function () {
 
             let href = $(this).attr("href");
 
@@ -188,6 +189,24 @@ const Serialize = {
         return {};
 
     },
+
+};
+
+const Request = {
+
+    create: (params) => {
+
+        if (!params.url) {
+            return Message.Toast({ 'message': 'URL não informada.', 'class': 'warning' });
+        }
+
+        fetch(params.url).then(response => {
+            return response.text();
+        }).then(data => {
+            return data;
+        });
+
+    }
 
 };
 

@@ -26,6 +26,13 @@ body {
     background: var(--blue) !important;
 }
 
+.btn-primary {
+    color: #fff;
+    background: var(--blue) !important;
+    border-color: var(--blue) !important;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+}
+
 .page-item.active .page-link {
     z-index: 3;
     color: #fff;
