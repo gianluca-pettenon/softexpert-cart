@@ -7,6 +7,6 @@ $this->get('/admin', 'Admin@index');
 $this->post('/product', 'Product@getAll');
 $this->post('/product/create', 'Product@create');
 
-$this->post('/product/type', 'TypeProduct@getAll');
+$this->post('/type-product', 'TypeProduct@getAll');
 $this->post('/product/type/create', 'TypeProduct@create');
 

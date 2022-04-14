@@ -16,6 +16,10 @@ body {
     margin: 0;
 }
 
+label {
+    font-size: 12px;
+}
+
 .logo {
     height: 55px;
     width: 215px;
