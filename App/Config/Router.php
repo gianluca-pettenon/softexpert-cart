@@ -8,5 +8,5 @@ $this->post('/product', 'Product@getAll');
 $this->post('/product/create', 'Product@create');
 
 $this->post('/type-product', 'TypeProduct@getAll');
-$this->post('/product/type/create', 'TypeProduct@create');
+$this->post('/type-product/create', 'TypeProduct@create');
 

@@ -1,10 +1,11 @@
-document.addEventListener("DOMContentLoaded", function(e) {
+document.addEventListener("DOMContentLoaded", () => {
 
     const btnProduct = document.getElementById("btnProduct");
+    var tblProducts = null;
 
     const Fields = {
 
-        get: function () {
+        get: () => {
 
             return [
                 {
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 },
                 {
                     field: "type",
-                    value: document.getElementById("txtProductType").value,
+                    value: document.getElementById("slcProductType").value,
                     required: true,
                 },
                 {
@@ -31,11 +32,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     const Table = {
 
-        get: function () {
-
-        },
-
-        columns: function () {
+        columns: () => {
             return [
                 {
                     title: "PRODUTO",
@@ -44,10 +41,16 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 {
                     title: "PRE&Ccedil;O",
                     data: "price",
+                    render: (row) => {
+                        return "R$" + row;
+                    }
                 },
                 {
                     title: "IMPOSTO",
                     data: "tax",
+                    render: (row) => {
+                        return "R$" + row;
+                    }
                 },
             ];
         },
@@ -56,21 +59,15 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     $('#txtProductPrice').mask('##0.00', { reverse: true });
 
-    var tblProducts = $("#tblProducts").DataTable({
+    tblProducts = $("#tblProducts").DataTable({
         ajax: {
             url: '/product',
             type: "POST",
             dataType: "json",
-            dataSrc: function (data) {
-                if (data) {
-                    if (data.data) {
-                        return data.data;
-                    }
-                }
-
-                return {};
+            dataSrc: (data) => {
+                return Serialize.result(data);
             },
-            error: function (xhr, ajaxOptions, thrownError) {
+            error: (xhr, ajaxOptions, thrownError) => {
                 console.log(xhr);
                 Message.Toast({ 'message': thrownError, 'class': 'danger' });
             },
@@ -85,9 +82,10 @@ document.addEventListener("DOMContentLoaded", function(e) {
         buttons: [
             {
                 text: "ADICIONAR",
-                className: "btn-dark btn-sm",
-                action: function () {
-                    $('#modalProduct').modal('show');
+                className: "btn-info btn-sm",
+                action: () => {
+                    loadType();
+                    Modal.show('modalProduct');
                 }
             },
         ],
@@ -98,19 +96,19 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     btnProduct.addEventListener("click", () => {
 
-        let fields = Fields.get();
+        const fields = Fields.get();
 
         if (Validate.requiredFields(fields)) {
             return false;
         }
 
-        $("#btnProduct").prop('disabled', true);
+        btnProduct.setAttribute('disabled', true);
 
         $.ajax({
             url: "/product/create",
             type: "POST",
             data: fields,
-            success: function (data) {
+            success: (data) => {
 
                 if (data) {
                     Message.Toast(data);
@@ -119,36 +117,35 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 tblProducts.ajax.reload();
 
             },
-            error: function (xhr, ajaxOptions, thrownError) {
+            error: (xhr, ajaxOptions, thrownError) => {
                 console.log(xhr);
                 Message.Toast({ 'message': thrownError, 'class': 'danger' });
             },
-            complete: function (xhr, status) {
+            complete: (xhr, status) => {
                 $("#formProduct").trigger('reset');
             },
         });
 
-        $("#btnProduct").prop('disabled', false);
+        btnProduct.setAttribute('disabled', false);
 
-        $('#modalProduct').modal('hide');
+        Modal.hide('modalProduct');
 
     });
 
-    async function loadType() {
+    function loadType() {
 
-        let getData = Request.create({
-            url: '/product/type'
-        })
+        $.ajax({
+            method: 'POST',
+            url: '/type-product',
+            success: (data) => {
 
-        return console.log(getData);
+                const result = Serialize.result(data);
 
-        if (data) {
-            Fill.Select($("#txtProductType"), data.data);
-        }
+                Fill.select($("#slcProductType"), result);
+
+            },
+        });
 
     }
-
-
-    loadType();
 
 });

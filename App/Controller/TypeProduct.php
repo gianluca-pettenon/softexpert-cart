@@ -24,4 +24,13 @@ class TypeProduct extends Controller
     {
         return Response::json($this->service->getAll());
     }
+
+    /**
+     * @route("/type-product/create", method={"POST"})
+     */
+
+    public function create()
+    {
+        return var_dump($_POST);
+    }
 }

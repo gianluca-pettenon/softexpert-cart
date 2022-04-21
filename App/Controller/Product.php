@@ -26,4 +26,14 @@ class Product extends Controller
     {
         return Response::json($this->service->getAll());
     }
+
+    /**
+     * @route("/product/create", method={"POST"})
+     */
+
+    public function create()
+    {
+        return Response::json(['coming soon.']);
+    }
+
 }
