@@ -57,11 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    $('#txtProductPrice').mask('##0.00', { reverse: true });
+    $("#txtProductPrice").mask("##0.00", { reverse: true });
 
     tblProducts = $("#tblProducts").DataTable({
         ajax: {
-            url: '/product',
+            url: "/product",
             type: "POST",
             dataType: "json",
             dataSrc: (data) => {
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             error: (xhr, ajaxOptions, thrownError) => {
                 console.log(xhr);
-                Message.Toast({ 'message': thrownError, 'class': 'danger' });
+                Message.Toast({ "message": thrownError, "class": "danger" });
             },
         },
 
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 className: "btn-info btn-sm",
                 action: () => {
                     loadType();
-                    Modal.show('modalProduct');
+                    Modal.show("modalProduct");
                 }
             },
         ],
@@ -102,12 +102,12 @@ document.addEventListener("DOMContentLoaded", () => {
             return false;
         }
 
-        btnProduct.setAttribute('disabled', true);
+        btnProduct.setAttribute("disabled", true);
 
         $.ajax({
             url: "/product/create",
             type: "POST",
-            data: fields,
+            data: { data: JSON.stringify(fields) },
             success: (data) => {
 
                 if (data) {
@@ -119,24 +119,24 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             error: (xhr, ajaxOptions, thrownError) => {
                 console.log(xhr);
-                Message.Toast({ 'message': thrownError, 'class': 'danger' });
+                Message.Toast({ "message": thrownError, "class": "danger" });
             },
             complete: (xhr, status) => {
-                $("#formProduct").trigger('reset');
+                $("#formProduct").trigger("reset");
             },
         });
 
-        btnProduct.setAttribute('disabled', false);
+        btnProduct.setAttribute("disabled", false);
 
-        Modal.hide('modalProduct');
+        Modal.hide("modalProduct");
 
     });
 
     function loadType() {
 
         $.ajax({
-            method: 'POST',
-            url: '/type-product',
+            method: "POST",
+            url: "/type-product",
             success: (data) => {
 
                 const result = Serialize.result(data);

@@ -1,44 +1,66 @@
-document.addEventListener("DOMContentLoaded", function(e) {
+document.addEventListener("DOMContentLoaded", () => {
 
     const btnType = document.getElementById("btnType");
 
-    $('#txtTypeTax').mask('##0.00', { reverse: true });
+    $("#txtTypeTax").mask("##0.00", { reverse: true });
+
+    const Fields = {
+
+        get: () => {
+
+            return [
+                {
+                    field: "name",
+                    value: document.getElementById("txtTypeName").value,
+                    required: true,
+                    maxLength: 100,
+                },
+                {
+                    field: "price",
+                    value: document.getElementById("txtTypeTax").value,
+                    required: true,
+                }
+            ];
+
+        },
+
+    }
+
+    const Table = {
+
+        columns: () => {
+            return [
+                {
+                    title: "PRODUTO",
+                    data: "name"
+                },
+                {
+                    title: "IMPOSTO",
+                    data: "price",
+                    render: (row) => {
+                        return row + "%";
+                    }
+                },
+            ]
+        }
+    }
 
     var tblTypeProducts = $("#tblTypeProducts").DataTable({
         ajax: {
-            url: '/product/type',
+            url: "/type-product",
             type: "POST",
             dataType: "json",
-            dataSrc: function (data) {
-                if (data) {
-                    if (data.data) {
-                        return data.data;
-                    }
-                }
-
-                return {};
+            dataSrc: (data) => {
+                return Serialize.result(data);
             },
-            error: function (xhr, ajaxOptions, thrownError) {
+            error: (xhr, ajaxOptions, thrownError) => {
                 console.log(xhr);
-                Message.Toast({ 'message': thrownError, 'class': 'danger' });
+                Message.Toast({ "message": thrownError, "class": "danger" });
             },
-            complete: function (xhr, status) { },
+            complete: (xhr, status) => { },
         },
 
-        columns: [
-            {
-                title: "PRODUTO",
-                data: "name"
-            },
-            {
-                title: "IMPOSTO",
-                data: "price",
-                render: function (data, type, row) {
-                    return data + '%';
-                }
-            },
-        ],
-
+        columns: Table.columns(),
         processing: false,
         bInfo: false,
         ordering: false,
@@ -46,49 +68,37 @@ document.addEventListener("DOMContentLoaded", function(e) {
         dom: "Bfrtp",
         buttons: [
             {
-                text: "Adicionar",
-                className: "btn btn-dark btn-sm",
-                action: function (e, dt, node, config) {
-                    $('#modalType').modal('show');
+                text: "ADICIONAR",
+                className: "btn-info btn-sm",
+                action: () => {
+                    Modal.show("modalType");
                 }
             },
         ],
-
         language: Language.DataTable
 
     });
 
     btnType.addEventListener("click", () => {
 
-        let params = [
-            {
-                field: "name",
-                value: $("#txtTypeName").val(),
-                required: true,
-                maxLength: 100,
-            },
-            {
-                field: "price",
-                value: $("#txtTypeTax").val(),
-                required: true,
-            }
-        ];
+        const fields = Fields.get();
 
-        if(Validate.requiredFields(params)) {
+        if (Validate.requiredFields(fields)) {
             return false;
         }
 
-        if(!Validate.checkPercentage(params)) {
+        if (!Validate.checkPercentage(fields)) {
             return false;
         }
 
-        $("#btnType").prop('disabled', true);
+        btnType.setAttribute("disabled", true);
+
 
         $.ajax({
-            url: '/product/type/create',
-            type: 'POST',
-            data: params,
-            success: function (data) {
+            url: "/type-product/create",
+            type: "POST",
+            data: { data: JSON.stringify(fields) },
+            success: (data) => {
 
                 if (data) {
                     Message.Toast(data);
@@ -97,18 +107,19 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 tblTypeProducts.ajax.reload();
 
             },
-            error: function (xhr, ajaxOptions, thrownError) {
+            error: (xhr, ajaxOptions, thrownError) => {
                 console.log(xhr);
-                Message.Toast({ 'message': thrownError, 'class': 'danger' });
+                Message.Toast({ "message": thrownError, "class": "danger" });
             },
-            complete: function (xhr, status) {
-                $("#formType").trigger('reset');
+            complete: (xhr, status) => {
+                $("#formType").trigger("reset");
             },
         });
 
-        $("#btnType").prop('disabled', false);
+        btnType.setAttribute("disabled", false);
 
-        $('#modalType').modal('hide');
+        Modal.hide("modalType");
+        $("#").modal("hide");
 
     });
 
