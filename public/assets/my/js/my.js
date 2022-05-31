@@ -126,7 +126,18 @@ const Validate = {
             if (element.required !== undefined && element.required) {
 
                 if (element.value == null || element.value == "") {
-                    Message.Toast({ 'message': 'Preencha os campos obrigat&oacute;rios.', 'class': 'warning' });
+
+                    let errorMsg = "Preencha os campos obrigat&oacute;rios.";
+
+                    if (element.nameField !== "") {
+
+                        let nameField = element.nameField.toLowerCase();
+
+                        errorMsg = "O campo % &eacute; obrigat&oacute;rio.".replace("%", nameField);
+
+                    }
+
+                    Message.Toast({ "message": errorMsg, "class": "warning" });
                     return true;
                 }
 
@@ -198,14 +209,26 @@ const Request = {
 
     create: (params) => {
 
-        if (!params.url) {
-            return Message.Toast({ 'message': 'URL não informada.', 'class': 'warning' });
-        }
+        return new Promise((resolve, reject) => {
 
-        fetch(params.url).then(response => {
-            return response.text();
-        }).then(data => {
-            return data;
+            let xhr = new XMLHttpRequest();
+
+            xhr.open(params.method, params.url);
+
+            xhr.onload = () => {
+
+                let status = xhr.status;
+
+                if (status == 200) {
+                    return resolve(xhr.responseText.json());
+                } else {
+                    reject(status);
+                }
+
+            };
+
+            xhr.send();
+
         });
 
     }

@@ -14,4 +14,4 @@ database.hostname =
 database.database =
 database.username =
 database.password =
-database.driver =
+database.driver = mysql

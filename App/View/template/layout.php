@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/libs/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/my/css/custom.css">
-    <title>SoftExpert</title>
+    <title>gianluca-pettenon/softexpert-cart</title>
 </head>
 
 <body>
@@ -21,6 +21,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbar">
+
                 <ul class="navbar-nav me-auto">
 
                     <li class="nav-item">
@@ -32,10 +33,25 @@
                     </li>
 
                 </ul>
+
+                <div class="d-flex">
+                    <button class="btn btn-warning my-2 my-sm-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Carrinho</button>
+                </div>
+
             </div>
 
         </div>
     </nav>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            ...
+        </div>
+    </div>
 
     <div class="container mt-5">
         {block name=main}{/block}
@@ -45,13 +61,13 @@
     <script src="/assets/libs/jquery/js/jquery.min.js"></script>
     <script src="/assets/libs/jquery/js/jquery.mask.min.js"></script>
     <script src="/assets/libs/toastr/js/toastr.min.js"></script>
-    <script src="/assets/libs/datatable/js/datatable.min.js"></script>
+    <script src="/assets/libs/simple-datatables/js/simple-datatables.js"></script>
 
     <script src="/assets/my/js/my.js"></script>
-    <script src="/assets/modules/admin/products/js/products.min.js"></script>
+    <!--<script src="/assets/modules/admin/products/js/products.min.js"></script>
     <script src="/assets/modules/admin/products/js/type.min.js"></script>
-    <!--<script src="/assets/modules/cart/js/cart.min.js"></script>-->
-
+    <script src="/assets/modules/cart/js/cart.min.js"></script>-->
+    <script src="/assets/modules/cart/js/cart.min-old.js"></script>
 </body>
 
 </html>
