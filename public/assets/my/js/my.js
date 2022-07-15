@@ -4,7 +4,9 @@ const App = {
 
         document.addEventListener("DOMContentLoaded", () => {
 
-            document.querySelector('input[type="text"]').setAttribute('autocomplete', 'off');
+            if (document.querySelector("input[type=text]") !== null) {
+                document.querySelector("input[type=text]").setAttribute("autocomplete", "off");
+            }
 
         });
     },
@@ -12,16 +14,16 @@ const App = {
     toolbar: () => {
 
         const currentUri = window.location.pathname;
-        const navLink = document.querySelectorAll('.nav-link');
+        const navLink = document.querySelectorAll(".nav-link");
 
         navLink.forEach(element => {
 
-            let elementHref = element.getAttribute('href');
+            let elementHref = element.getAttribute("href");
 
-            element.classList.remove('active');
+            element.classList.remove("active");
 
             if (elementHref == currentUri) {
-                element.classList.add('active');
+                element.classList.add("active");
             }
 
         });
@@ -34,16 +36,17 @@ const Modal = {
 
     show: (element) => {
 
-        let modal = new bootstrap.Modal(document.getElementById(element), {});
-        modal.show();
+        const instanceModal = new bootstrap.Modal(document.getElementById(element), {});
+
+        return instanceModal.show();
 
     },
 
     hide: (element) => {
 
-        let modal = new bootstrap.Modal(document.getElementById(element), {});
-        modal.hide();
+        const instanceModal = new bootstrap.Modal(document.getElementById(element), {});
 
+        return instanceModal.hide();
     }
 
 }
@@ -67,11 +70,11 @@ const Fill = {
 
         let options = [];
 
-        options.push($('<option/>').val(null).text('Selecione'));
+        options.push($("<option/>").val(null).text("Selecione"));
 
         for (let key in data) {
             if (data.hasOwnProperty(key)) {
-                options.push($('<option/>').val(data[key].id).text(data[key].name));
+                options.push($("<option/>").val(data[key].id).text(data[key].name));
             }
         }
 
@@ -89,16 +92,16 @@ const Message = {
 
             switch (data.class) {
 
-                case 'success':
+                case "success":
                     return toastr.success(data.message, Config.toast);
 
-                case 'warning':
+                case "warning":
                     return toastr.warning(data.message, Config.toast);
 
-                case 'info':
+                case "info":
                     return toastr.info(data.message, Config.toast);
 
-                case 'danger':
+                case "danger":
                     return toastr.error(data.message, Config.toast);
 
                 default:
@@ -109,6 +112,18 @@ const Message = {
         }
 
     },
+}
+
+const Mask = {
+
+    create: (value, pattern) => {
+
+        let i = 0;
+        const v = value.toString();
+
+        return pattern.replace(/#/g, () => v[i++] || '');
+
+    }
 }
 
 const Validate = {
@@ -157,7 +172,7 @@ const Validate = {
             if (element.maxLength !== undefined) {
 
                 if (element.value.length > element.maxLength) {
-                    Message.Toast({ 'message': 'Caracteres exedidos.', 'class': 'warning' });
+                    Message.Toast({ "message": "Caracteres exedidos.", "class": "warning" });
                     return true;
                 }
 
@@ -176,7 +191,7 @@ const Validate = {
             let element = fields[i];
 
             if (parseFloat(element.value) > 100) {
-                Message.Toast({ 'message': 'Percentual maior que 100%', 'class': 'warning' });
+                Message.Toast({ "message": "Percentual maior que 100%", "class": "warning" });
                 return false;
             }
 
@@ -202,36 +217,6 @@ const Serialize = {
         return {};
 
     },
-
-};
-
-const Request = {
-
-    create: (params) => {
-
-        return new Promise((resolve, reject) => {
-
-            let xhr = new XMLHttpRequest();
-
-            xhr.open(params.method, params.url);
-
-            xhr.onload = () => {
-
-                let status = xhr.status;
-
-                if (status == 200) {
-                    return resolve(xhr.responseText.json());
-                } else {
-                    reject(status);
-                }
-
-            };
-
-            xhr.send();
-
-        });
-
-    }
 
 };
 

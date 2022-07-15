@@ -14,11 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
         data: () => {
-
-            return Request.create({
-                method: "POST",
-                url: "/product"
-            });
+            return "";
         },
 
         init: () => {
